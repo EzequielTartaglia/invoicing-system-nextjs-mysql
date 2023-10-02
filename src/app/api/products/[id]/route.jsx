@@ -1,7 +1,7 @@
 export async function GET(req, res) {
     try {
         const response = {
-            message: 'Getting products'
+            message: 'Getting one product'
           };
     
         return Response.json({ response })
