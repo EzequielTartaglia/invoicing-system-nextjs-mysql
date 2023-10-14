@@ -1,13 +1,20 @@
+import { pool } from "../../../../../config/db";
 
-export async function GET(request, { params }) {
+export async function GET(req, { params }) {
     try {
         const { id } = params;
-        
-        const response = {
-            message: 'Getting one product:' + id
-          };
-    
-        return Response.json({ response})
+
+      //POST
+      if (req.method === 'POST') {
+        const response = await pool.query(``)
+        return Response.json(response[0], { status: 200 });
+      }
+
+      //GET
+      else {
+        const response = await pool.query(`SELECT * FROM product WHERE id = ${id}`)
+        return Response.json(response[0], { status: 200 });
+      }
 
     } catch (error) {
       console.error(error);

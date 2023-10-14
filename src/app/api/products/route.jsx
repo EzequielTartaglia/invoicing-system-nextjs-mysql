@@ -5,13 +5,13 @@ export async function GET(req, res) {
 
     //POST
     if (req.method === 'POST') {
-      const [response] = await pool.query('DESCRIBE product')
+      const [response] = await pool.query(``)
       return Response.json(response, { status: 200 });
     }
 
     //GET
     else {
-      const [response] = await pool.query('DESCRIBE product')
+      const [response] = await pool.query(`SELECT * FROM product`)
       return Response.json(response, { status: 200 });
     }
 

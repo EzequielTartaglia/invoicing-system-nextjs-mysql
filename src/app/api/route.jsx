@@ -3,7 +3,7 @@ import { pool } from "../../../config/db";
 export async function GET(req, res) {
   try {
 
-    const [response] = await pool.query('SELECT NOW()')
+    const [response] = await pool.query(`SELECT NOW()`)
 
     return Response.json(response[0]['NOW()'], { status: 200 });
   } catch (error) {
