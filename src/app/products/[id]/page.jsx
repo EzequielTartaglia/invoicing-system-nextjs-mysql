@@ -1,6 +1,7 @@
 
-export default function productID() {
+export default function productID({ params }) {
+
   return (
-    <div>productIDPage</div>
+    <div>productIDPage : {params.id}</div>
   )
 }
