@@ -1,7 +1,21 @@
-import React from 'react'
+import axios from "axios";
+import { ProductForm } from "../../../components/ProductsForm";
 
-export default function NewProductsPage() {
+function NewPage() {
   return (
-    <div>NewProductsPage</div>
-  )
+    <div className="h-5/6 grid place-items-center">
+      <ProductForm />
+    </div>
+  );
 }
+export default NewPage;
+
+export const getServerSideProps = async (context) => {
+  const res = await axios.get("http://localhost:3000/api/products");
+
+  return {
+    props: {
+      products: res.data,
+    },
+  };
+};

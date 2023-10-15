@@ -1,22 +1,38 @@
 import { pool } from "../../../../config/db";
+import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET() {
   try {
-
-    //POST
-    if (req.method === 'POST') {
-      const [response] = await pool.query(``)
-      return Response.json(response, { status: 200 });
-    }
-
-    //GET
-    else {
-      const [response] = await pool.query(`SELECT * FROM product`)
-      return Response.json(response, { status: 200 });
-    }
-
+    const results = await pool.query("SELECT * FROM product");
+    return NextResponse.json(results);
   } catch (error) {
-    console.error(error);
-    return new Response("Error: Something went wrong", { status: 500 });
+    return NextResponse.json(
+      { message: error.message },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+export async function POST(request) {
+  try {
+    const { name, description, price } = await request.json();
+    console.log(name, description, price);
+
+    const result = await pool.query("INSERT INTO product SET ?", {
+      name,
+      description,
+      price,
+    });
+
+    return NextResponse.json({ name, description, price, id: result.insertId });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error.message },
+      {
+        status: 500,
+      }
+    );
   }
 }
