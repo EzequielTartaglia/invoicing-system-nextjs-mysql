@@ -1,6 +1,6 @@
-import NewProductsPage from "../../../../views/ProductsPage/NewProductsPage/NewProductsPage"
+import AddProductPage from "../../../../views/ProductsPage/AddProductPage/AddProductPage"
 
 export default function newProduct() {
-    return (<NewProductsPage/>)
+    return (<AddProductPage/>)
   }
   

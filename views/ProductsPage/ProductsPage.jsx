@@ -10,7 +10,7 @@ async function loadProduct() {
 async function ProductsPage() {
   const products = await loadProduct();
 
-  // Filtra los productos que tienen un `id` válido
+  // Filter valid `id` products 
   const validProducts = products.filter((product) => product.id !== undefined);
 
   if (validProducts.length === 0) return <h1>No Products</h1>;

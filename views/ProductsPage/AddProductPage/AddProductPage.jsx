@@ -1,14 +1,14 @@
 import axios from "axios";
 import { ProductForm } from "../../../components/ProductsForm";
 
-function NewPage() {
+function AddProductPage() {
   return (
     <div className="h-5/6 grid place-items-center">
       <ProductForm />
     </div>
   );
 }
-export default NewPage;
+export default AddProductPage;
 
 export const getServerSideProps = async (context) => {
   const res = await axios.get("http://localhost:3000/api/products");
