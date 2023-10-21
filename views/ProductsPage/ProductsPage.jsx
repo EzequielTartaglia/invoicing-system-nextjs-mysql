@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ProductCard } from "../../components/ProductCard";
+import { ProductCard } from "../../src/components/ProductCard";
 
 async function loadProduct() {
   const { data } = await axios.get("http://localhost:3000/api/products");
