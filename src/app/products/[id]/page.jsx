@@ -4,7 +4,7 @@ import Buttons from "./Buttons";
 
 async function loadProduct(productID){
   const { data } = await axios.get("http://localhost:3000/api/products/"+ productID);
-  return data
+  return data[0]
 }
 
 async function ProductPage({ params }) {
@@ -13,7 +13,7 @@ async function ProductPage({ params }) {
   return (
     <section className="flex justify-center items-center h-[calc(100vh-10rem)]">
       <div className="flex w-4/6 h-2/6 justify-center">
-        <div className="p-6 bg-white w-1/3">
+        <div className="p-6 w-1/3 dark:bg-gray-800">
           <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
           <h4 className="text-4xl font-bold">{product.price}$</h4>
           <p className="text-slate-700">{product.description}</p>
