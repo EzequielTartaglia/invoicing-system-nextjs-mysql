@@ -10,12 +10,12 @@ function Buttons({ productId }) {
       <button
         className="text-white bg-red-500 hover:bg-red-700 py-2 px-3 rounded"
         onClick={async () => {
-          if (confirm("are you sure you want to delete this prodcut?")) {
+          if (confirm("¿Estas seguro que quieres eliminar este producto?")) {
             const res = await axios.delete("/api/products/" + productId);
-            if (res.status === 204) {
+            //if (res.status === 204) {
               router.push("/products");
               router.refresh();
-            }
+            //}
           }
         }}
       >
