@@ -11,6 +11,7 @@ export function ProductForm() {
     description: "",
     price: 0,
   });
+  
   const router = useRouter();
   const params = useParams();
 
@@ -18,7 +19,7 @@ export function ProductForm() {
     const fetchProduct = async (id) => {
       try {
         const { data } = await axios.get("/api/products/" + id);
-        setProduct(data);
+        setProduct(data[0]);
       } catch (error) {
         console.error(error);
       }
