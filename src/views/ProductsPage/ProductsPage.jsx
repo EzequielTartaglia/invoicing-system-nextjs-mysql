@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ProductCard } from "@/components/ProductCard";
-import Link from "next/link";
+import Button from "@/components/Button";
 
 async function loadProduct() {
   const { data } = await axios.get("http://localhost:3000/api/products");
@@ -20,9 +20,7 @@ async function ProductsPage() {
    <div className="container mx-auto flex justify-between items-center">
     <ul className="">
     <li>
-      <Link href="/products/new" className="text-sky-500 hover:text-sky-400">
-        Agregar
-      </Link>
+    <Button href={"/products/new"} text={"Agregar"}/>
     </li>
   </ul>
   </div>
