@@ -77,7 +77,7 @@ export function ProductForm() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             type="text"
-            placeholder="name"
+            placeholder="Ingrese un nombre"
             id="name"
             name="name"
             onChange={handleChange}
@@ -115,7 +115,7 @@ export function ProductForm() {
             name="description"
             id="description"
             rows="3"
-            placeholder="Product description"
+            placeholder="Ingrese una descripcion"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             onChange={handleChange}
             value={product.description}
