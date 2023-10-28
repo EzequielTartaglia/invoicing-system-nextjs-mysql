@@ -17,18 +17,18 @@ async function ProductsPage() {
   if (validProducts.length === 0) return <h1>No Products</h1>;
 
   return (<div>
-   <div className="container mx-auto flex justify-between items-center">
-    <ul className="">
-    <li>
-    <Button href={"/products/new"} text={"Agregar"}/>
-    </li>
-  </ul>
+    <div className="py-2 flex justify-end items-center">
+      <Button href="/products/new" text="Agregar" />
+    </div>
+
+   <div className="container mx-auto flex justify-between items-center">  
   </div>
     <div className="grid gap-4 grid-cols-1 md:grid-cols-4">
       {validProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
+    
     </div>);
 }
 

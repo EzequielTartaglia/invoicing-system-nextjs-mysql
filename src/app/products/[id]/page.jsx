@@ -12,7 +12,7 @@ async function ProductPage({ params }) {
   console.log(product)
   return (
     <div className="md:min-w-[400px] lg:min-w-[600px]">
-      <div className="p-6 bg-gray-800 text-white rounded-lg">
+      <div className="p-6 bg-gray-800 text-white rounded-lg border border-gray-600 shadow-md">
         <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
         <h4 className="text-4xl font-bold">${product.price}</h4>
         <p className="text-gray-300">{product.description}</p>

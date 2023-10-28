@@ -64,7 +64,7 @@ export function ProductForm() {
   return (
     <div className="md:min-w-[400px] lg:min-w-[600px]">
       <form
-        className="bg-white dark:bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 border border-gray-600 shadow-md"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">

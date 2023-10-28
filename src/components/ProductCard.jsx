@@ -4,7 +4,7 @@ export function ProductCard({ product }) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="md:min-w-[400px] lg:min-w-[600px] h-[150px] block p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mb-3"
+      className="md:min-w-[400px] lg:min-w-[600px] h-[150px] block p-6 bg-white rounded-lg border border-gray-600 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 mb-3"
     >
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {product.name}
