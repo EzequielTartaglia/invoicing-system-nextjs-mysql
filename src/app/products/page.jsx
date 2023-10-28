@@ -1,4 +1,4 @@
-import ProductsPage from "../../../views/ProductsPage/ProductsPage"
+import ProductsPage from "../../views/ProductsPage/ProductsPage"
 
 export default function products() {
     return (<ProductsPage/>)

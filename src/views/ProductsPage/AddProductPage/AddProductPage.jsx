@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ProductForm } from "../../../src/components/ProductsForm";
+import { ProductForm } from "@/components/ProductsForm";
 
 function AddProductPage() {
   return (

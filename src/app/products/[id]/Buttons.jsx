@@ -19,7 +19,7 @@ function Buttons({ productId }) {
           }
         }}
       >
-        delete
+        Eliminar
       </button>
       <button
         className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-3 rounded"
@@ -27,7 +27,7 @@ function Buttons({ productId }) {
           router.push(`/products/edit/${productId}`);
         }}
       >
-        Edit
+        Editar
       </button>
     </div>
   );

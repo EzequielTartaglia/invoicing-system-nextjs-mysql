@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ProductCard } from "../../src/components/ProductCard";
+import { ProductCard } from "@/components/ProductCard";
+import Link from "next/link";
 
 async function loadProduct() {
   const { data } = await axios.get("http://localhost:3000/api/products");
@@ -15,13 +16,22 @@ async function ProductsPage() {
 
   if (validProducts.length === 0) return <h1>No Products</h1>;
 
-  return (
+  return (<div>
+   <div className="container mx-auto flex justify-between items-center">
+    <ul className="">
+    <li>
+      <Link href="/products/new" className="text-sky-500 hover:text-sky-400">
+        Agregar
+      </Link>
+    </li>
+  </ul>
+  </div>
     <div className="grid gap-4 grid-cols-1 md:grid-cols-4">
       {validProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
-  );
+    </div>);
 }
 
 export default ProductsPage;
