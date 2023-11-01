@@ -10,11 +10,20 @@ CREATE TABLE user(
     name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
---DESCRIBE user;
+-- DESCRIBE user;
+
+CREATE TABLE category(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(400),
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- DESCRIBE category;
 
 CREATE TABLE product(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,19 +32,10 @@ CREATE TABLE product(
     category_id INT NOT NULL,
     price DECIMAL,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(id)
 );
---DESCRIBE product;
-
-CREATE TABLE category(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(400)
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
---DESCRIBE category;
+-- DESCRIBE product;
 
 CREATE TABLE purchase(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -43,9 +43,9 @@ CREATE TABLE purchase(
     product_id INT NOT NULL,
     purchase_date DATETIME NOT NULL,
     total DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(id)
-    CONSTRAINT fk_purchase_user FOREIGN KEY (product_id) REFERENCES product(id)
+    CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_purchase_product FOREIGN KEY (product_id) REFERENCES product(id),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
---DESCRIBE purchase;
+-- DESCRIBE purchase;
