@@ -9,7 +9,9 @@ export function ProductForm() {
   const [product, setProduct] = useState({
     name: "",
     description: "",
+    category_id: 0,
     price: 0,
+    stock_quantity: 0
   });
   
   const router = useRouter();
@@ -41,6 +43,8 @@ export function ProductForm() {
           name: product.name,
           description: product.description,
           price: product.price,
+          category_id: product.category_id,
+          stock_quantity: product.stock_quantity
         });
 
         toast.success("Task Updated", {
@@ -87,23 +91,6 @@ export function ProductForm() {
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="price"
-            className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
-          >
-            Precio:
-          </label>
-          <input
-            type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
-            name="price"
-            placeholder="10.00"
-            onChange={handleChange}
-            value={product.price}
-          />
-        </div>
-
         <div className="mb-2">
           <label
             htmlFor="description"
@@ -121,6 +108,58 @@ export function ProductForm() {
             value={product.description}
           ></textarea>
         </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="category_id"
+            className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
+          >
+            Categoria:
+          </label>
+          <input
+            type="text"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
+            name="category_id"
+            placeholder="Categoria"
+            onChange={handleChange}
+            value={product.category_id}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="price"
+            className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
+          >
+            Precio por unidad:
+          </label>
+          <input
+            type="text"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
+            name="price"
+            placeholder="10.00"
+            onChange={handleChange}
+            value={product.price}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="stock_quantity"
+            className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
+          >
+            Cantidad en stock:
+          </label>
+          <input
+            type="text"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
+            name="stock_quantity"
+            placeholder="Cantidad en stock"
+            onChange={handleChange}
+            value={product.stock_quantity}
+          />
+        </div>
+
         <div className="flex justify-center">
         <button className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           {params?.id ? "Actualizar producto" : "Agregar producto"}

@@ -31,6 +31,7 @@ CREATE TABLE product(
     description VARCHAR(400),
     category_id INT NOT NULL,
     price DECIMAL,
+    stock_quantity INT,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(id)
@@ -49,3 +50,19 @@ CREATE TABLE purchase(
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- DESCRIBE purchase;
+
+
+-- Insert data to get a little DB
+INSERT INTO category (name, description) VALUES
+  ('Bebidas', 'Bebidas con alcohol, bebidas sin alcohol, etc.'),
+  ('Golosinas', 'Chocolate, caramelos, chupetines, etc.'),
+  ('Cigarrillos', 'Tabaco, papelillos, etc.'),
+  ('Almacen', 'Alimentos, bebidas, aperitivos, etc.'),
+  ('Salud y belleza', 'Productos de higiene, cosméticos, etc.');
+
+  INSERT INTO product (name, description, category_id, price, stock_quantity) VALUES
+  ('Agua', 'Descipcion de ejemplo', 1, 1000.00, 32),
+  ('Chocolate', 'Descipcion de ejemplo', 2, 2000.00, 34),
+  ('Cigarrillo 1', 'Descipcion de ejemplo', 1, 1500.00, 40),
+  ('Queso', 'Descipcion de ejemplo', 3, 500.00, 230),
+  ('Shampoo', 'Descipcion de ejemplo', 1, 3000.00, 239);
