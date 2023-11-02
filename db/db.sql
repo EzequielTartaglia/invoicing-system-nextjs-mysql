@@ -52,7 +52,7 @@ CREATE TABLE purchase(
 -- DESCRIBE purchase;
 
 
--- Insert data to get a little DB
+-- Insert data to get a seed DB
 INSERT INTO category (name, description) VALUES
   ('Bebidas', 'Bebidas con alcohol, bebidas sin alcohol, etc.'),
   ('Golosinas', 'Chocolate, caramelos, chupetines, etc.'),
