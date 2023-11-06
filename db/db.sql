@@ -6,13 +6,13 @@ USE invoicing_system_db;
 
 -- Create Tables
 CREATE TABLE user(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(255) NOT NULL,
+    user_last_name VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL UNIQUE,
+    user_password VARCHAR(255) NOT NULL,
+    user_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- DESCRIBE user;
 
@@ -39,15 +39,15 @@ CREATE TABLE product(
 -- DESCRIBE product;
 
 CREATE TABLE purchase(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    purchase_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     purchase_date DATETIME NOT NULL,
-    total DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(id),
+    purchase_total DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(user_id),
     CONSTRAINT fk_purchase_product FOREIGN KEY (product_id) REFERENCES product(product_id),
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    purchase_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    purchase_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- DESCRIBE purchase;
 
