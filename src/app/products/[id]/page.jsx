@@ -13,10 +13,13 @@ async function ProductPage({ params }) {
   return (
     <div className="md:min-w-[400px] lg:min-w-[600px]">
       <div className="p-6 bg-gray-800 text-white rounded-lg border border-gray-600 shadow-md">
-        <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-        <h4 className="text-4xl font-bold">${product.price}</h4>
-        <p className="text-gray-300">{product.description}</p>
-        <Buttons productId={product.id} />
+        <h3 className="text-2xl font-bold mb-3">{product.product_name}</h3>
+        <h4 className="text-gray-300">{product.category_name}</h4>
+        <br />
+        <h4 className="text-4xl font-bold">${product.product_price}</h4>
+        <br />
+        <p className="text-gray-300">{product.product_description}</p>
+        <Buttons productId={product.product_id} />
       </div>
     </div>
   );

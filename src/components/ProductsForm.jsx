@@ -7,11 +7,11 @@ import { useRouter, useParams } from "next/navigation";
 
 export function ProductForm() {
   const [product, setProduct] = useState({
-    name: "",
-    description: "",
+    product_name: "",
+    product_description: "",
     category_id: 0,
-    price: 0,
-    stock_quantity: 0
+    product_price: 0,
+    product_stock_quantity: 0
   });
   
   const router = useRouter();
@@ -40,11 +40,11 @@ export function ProductForm() {
     try {
       if (params?.id) {
         await axios.put("/api/products/" + params.id, {
-          name: product.name,
-          description: product.description,
-          price: product.price,
+          product_name: product.product_name,
+          product_description: product.product_description,
+          product_price: product.product_price,
           category_id: product.category_id,
-          stock_quantity: product.stock_quantity
+          product_stock_quantity: product.product_stock_quantity
         });
 
         toast.success("Task Updated", {
@@ -83,9 +83,9 @@ export function ProductForm() {
             type="text"
             placeholder="Ingrese un nombre"
             id="name"
-            name="name"
+            name="product_name"
             onChange={handleChange}
-            value={product.name}
+            value={product.product_name}
             autoComplete="off"
             autoFocus
           />
@@ -99,13 +99,13 @@ export function ProductForm() {
             Descripcion
           </label>
           <textarea
-            name="description"
+            name="product_description"
             id="description"
             rows="3"
             placeholder="Ingrese una descripcion"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             onChange={handleChange}
-            value={product.description}
+            value={product.product_description}
           ></textarea>
         </div>
 
@@ -128,7 +128,7 @@ export function ProductForm() {
 
         <div className="mb-4">
           <label
-            htmlFor="price"
+            htmlFor="product_price"
             className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
           >
             Precio por unidad:
@@ -136,16 +136,16 @@ export function ProductForm() {
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
-            name="price"
+            name="product_price"
             placeholder="10.00"
             onChange={handleChange}
-            value={product.price}
+            value={product.product_price}
           />
         </div>
 
         <div className="mb-4">
           <label
-            htmlFor="stock_quantity"
+            htmlFor="product_stock_quantity"
             className="block text-gray-700 dark:text-white font-bold mb-2 text-sm"
           >
             Cantidad en stock:
@@ -153,10 +153,10 @@ export function ProductForm() {
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
-            name="stock_quantity"
+            name="product_stock_quantity"
             placeholder="Cantidad en stock"
             onChange={handleChange}
-            value={product.stock_quantity}
+            value={product.product_stock_quantity}
           />
         </div>
 

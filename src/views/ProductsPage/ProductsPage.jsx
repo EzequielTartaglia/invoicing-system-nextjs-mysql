@@ -12,7 +12,7 @@ async function ProductsPage() {
   const products = await loadProduct();
 
   // Filter valid `id` products 
-  const validProducts = products.filter((product) => product.id !== undefined);
+  const validProducts = products.filter((product) => product.product_id !== undefined);
 
   if (validProducts.length === 0) return <h1>No Products</h1>;
 
@@ -25,7 +25,7 @@ async function ProductsPage() {
   </div>
     <div className="grid gap-4 grid-cols-1 md:grid-cols-4">
       {validProducts.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.product_id} product={product} />
       ))}
     </div>
     

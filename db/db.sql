@@ -17,24 +17,24 @@ CREATE TABLE user(
 -- DESCRIBE user;
 
 CREATE TABLE category(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(400),
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    category_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL,
+    category_description VARCHAR(400),
+    category_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    category_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- DESCRIBE category;
 
 CREATE TABLE product(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(400),
+    product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    product_description VARCHAR(400),
     category_id INT NOT NULL,
-    price DECIMAL,
-    stock_quantity INT,
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(id)
+    product_price DECIMAL,
+    product_stock_quantity INT,
+    product_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    product_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(category_id)
 );
 -- DESCRIBE product;
 
@@ -45,7 +45,7 @@ CREATE TABLE purchase(
     purchase_date DATETIME NOT NULL,
     total DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(id),
-    CONSTRAINT fk_purchase_product FOREIGN KEY (product_id) REFERENCES product(id),
+    CONSTRAINT fk_purchase_product FOREIGN KEY (product_id) REFERENCES product(product_id),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -53,14 +53,14 @@ CREATE TABLE purchase(
 
 
 -- Insert data to get a seed DB
-INSERT INTO category (name, description) VALUES
+INSERT INTO category (category_name, category_description) VALUES
   ('Bebidas', 'Bebidas con alcohol, bebidas sin alcohol, etc.'),
   ('Golosinas', 'Chocolate, caramelos, chupetines, etc.'),
   ('Cigarrillos', 'Tabaco, papelillos, etc.'),
   ('Almacen', 'Alimentos, bebidas, aperitivos, etc.'),
   ('Salud y belleza', 'Productos de higiene, cosméticos, etc.');
 
-  INSERT INTO product (name, description, category_id, price, stock_quantity) VALUES
+  INSERT INTO product (product_name, product_description, category_id, product_price, product_stock_quantity) VALUES
   ('Agua', 'Descripcion de ejemplo', 1, 1000.00, 32),
   ('Chocolate', 'Descripcion de ejemplo', 2, 2000.00, 34),
   ('Cigarrillo 1', 'Descripcion de ejemplo', 1, 1500.00, 40),
