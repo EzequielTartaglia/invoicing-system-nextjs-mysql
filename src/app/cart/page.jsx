@@ -1,7 +1,5 @@
-import React from 'react'
+import CartPage from "@/views/CartPage/CartPage"
 
 export default function page() {
-  return (
-    <div>Cart</div>
-  )
+    return (<CartPage/>)
 }
