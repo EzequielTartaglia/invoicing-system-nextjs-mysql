@@ -30,7 +30,7 @@ CREATE TABLE product(
     product_name VARCHAR(255) NOT NULL,
     product_description VARCHAR(400),
     category_id INT NOT NULL,
-    product_price DECIMAL,
+    product_price DECIMAL(10,2),
     product_stock_quantity INT,
     product_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     product_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
