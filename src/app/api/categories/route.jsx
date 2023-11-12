@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const results = await pool.query("SELECT * FROM category");
+    console.log(results[0])
     return NextResponse.json(results[0]);
   } catch (error) {
     return NextResponse.json(
