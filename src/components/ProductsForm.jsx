@@ -17,11 +17,22 @@ export function ProductForm() {
   const router = useRouter();
   const params = useParams();
 
-  useEffect(() => {
+  const [categories, setCategories] = useState([]); // Nuevo estado para las categorías
+
+useEffect(() => {
     const fetchProduct = async (id) => {
       try {
-        const { data } = await axios.get("/api/products/" + id);
+        const { data } = await axios.get('/api/products/' + id);
         setProduct(data[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get('/api/categories'); 
+        setCategories(data);
       } catch (error) {
         console.error(error);
       }
@@ -30,6 +41,8 @@ export function ProductForm() {
     if (params?.id) {
       fetchProduct(params.id);
     }
+
+    fetchCategories(); 
   }, [params.id]);
 
   const handleChange = ({ target: { name, value } }) =>
@@ -116,14 +129,22 @@ export function ProductForm() {
           >
             Categoria:
           </label>
-          <input
-            type="text"
+          <select
+            type="select"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             name="category_id"
             placeholder="Categoria"
             onChange={handleChange}
             value={product.category_id}
-          />
+          >
+            <option value="" disabled selected>Selecciona una categoría</option>
+            {categories.map((category) => (
+              <option key={category.category_id} value={category.category_id}>
+                {category.category_name}
+              </option>
+            ))}
+            
+          </select>
         </div>
 
         <div className="mb-4">
