@@ -7,9 +7,16 @@ async function loadProduct() {
     console.log(data);
     return data;
   }
+
+  async function loadPurchase() {
+    const { data } = await axios.get("http://localhost:3000/api/purchase");
+    console.log(data);
+    return data;
+  }
   
 export default async function CartPage() {
     const products = await loadProduct();
+    const purchases = await loadPurchase();
   
     const cart = []
     
@@ -63,7 +70,7 @@ export default async function CartPage() {
         </tr>
       </thead>
       <tbody>
-        {products.map((productInCart) => (
+        {purchases.map((productInCart) => (
           
           <tr key={productInCart.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
