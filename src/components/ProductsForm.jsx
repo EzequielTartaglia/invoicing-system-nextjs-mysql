@@ -9,7 +9,7 @@ export function ProductForm() {
   const [product, setProduct] = useState({
     product_name: "",
     product_description: "",
-    category_id: 0,
+    category_id: null,
     product_price: 0,
     product_stock_quantity: 0
   });
