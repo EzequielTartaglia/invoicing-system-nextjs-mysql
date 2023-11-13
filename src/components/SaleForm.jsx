@@ -10,13 +10,14 @@ export function SaleForm() {
     user_id: 1,
     sale_date: Date.now(),
     sale_total: null,
-    sale_is_closed: false,
+    sale_is_closed: 0,
   });
   
   const router = useRouter();
   const params = useParams();
 
-  const [categories, setCategories] = useState([]); // Nuevo estado para las categorías
+  const [categories, setCategories] = useState([]); 
+  const [product, setProduct] = useState([]); 
 
 useEffect(() => {
 
@@ -55,13 +56,13 @@ useEffect(() => {
   }, [params.id]);
 
   const handleChange = ({ target: { name, value } }) =>
-    setProduct({ ...sale, [name]: value });
+  setSale({ ...sale, [name]: value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (params?.id) {
-        await axios.put("/api/sale/" + params.id, {
+        await axios.put("/api/sales/" + params.id, {
           sale_date: sale.sale_date,
           sale_total: sale.sale_total,
           sale_is_closed: sale.sale_is_closed,
@@ -71,7 +72,7 @@ useEffect(() => {
           position: "bottom-center",
         });
       } else {
-        await axios.post("/api/sale", product);
+        await axios.post("/api/sales", sale);
 
         toast.success("Task Saved", {
           position: "bottom-center",
@@ -79,7 +80,7 @@ useEffect(() => {
       }
 
       router.refresh();
-      router.push("/products");
+      router.push("/sales");
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -101,7 +102,7 @@ useEffect(() => {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
-            type="text"
+            type="date"
             placeholder="Ingrese un fecha"
             id="sale_date"
             name="sale_date"
@@ -150,8 +151,8 @@ useEffect(() => {
           <option value="" disabled selected>
             Selecciona una condición
           </option>
-          <option value={true}>Cerrada</option>
-          <option value={false}>No finalizada</option>
+          <option value={1}>Cerrada</option>
+          <option value={0}>No finalizada</option>
         </select>
 
         </div>

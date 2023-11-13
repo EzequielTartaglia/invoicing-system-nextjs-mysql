@@ -60,12 +60,12 @@ export default async function SalesPage() {
           
           <tr key={sale.sale_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
-            <td className="py-3 px-6 border-b text-center">{sale.user_id}</td>
+            <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_date}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_total}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed}</td>
+            <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Si" : "No"}</td>
             <td className="py-3 px-6 border-b text-center">
-            <Link href={`/products/${sale.sale_id}`} className="text-blue-500">
+            <Link href={`/sale/${sale.sale_id}`} className="text-blue-500">
             Ver
           </Link>
           </td>          
