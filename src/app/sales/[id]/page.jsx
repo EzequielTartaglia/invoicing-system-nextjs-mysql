@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios from 'axios'
 import Link from "next/link"; 
-import Button from "@/components/Button";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -8,22 +7,22 @@ async function loadProduct() {
     return data;
   }
 
-  async function loadPurchase() {
-    const { data } = await axios.get("http://localhost:3000/api/purchase");
+  async function loadSales() {
+    const { data } = await axios.get("http://localhost:3000/api/sales");
     console.log(data);
     return data;
   }
   
-export default async function CartPage() {
+export default async function SalesPage() {
     const products = await loadProduct();
-    const purchases = await loadPurchase();
+    const sales = await loadSales();
   
-    const cart = []
     
     // Filter valid `id` products 
     const validProducts = products.filter((product) => product.product_id !== undefined);
+    const validSales = sales.filter((sale) => sale.sale_id !== undefined);
   
-    if (validProducts.length === 0) return <h1>No hay productos ingresados.</h1>;
+    if (validProducts.length === 0) return <h1>No se encuentran productos agregados en la base de datos.</h1>;
   
     return (<div>
   
@@ -70,7 +69,7 @@ export default async function CartPage() {
         </tr>
       </thead>
       <tbody>
-        {purchases.map((productInCart) => (
+        {validSales.map((productInCart) => (
           
           <tr key={productInCart.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
           >

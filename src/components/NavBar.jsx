@@ -16,7 +16,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/cart" className="text-sky-500 hover:text-sky-400">
+            <Link href="/sales" className="text-sky-500 hover:text-sky-400">
               Sistema de compras
             </Link>
           </li>

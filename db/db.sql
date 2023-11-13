@@ -38,15 +38,28 @@ CREATE TABLE product(
 );
 -- DESCRIBE product;
 
-CREATE TABLE purchase(
-    purchase_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE sale(
+    sale_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    product_id INT NOT NULL,
-    purchase_date DATETIME NOT NULL,
-    purchase_total DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_purchase_user FOREIGN KEY (user_id) REFERENCES user(user_id),
-    CONSTRAINT fk_purchase_product FOREIGN KEY (product_id) REFERENCES product(product_id),
-    purchase_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    purchase_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    sale_date DATETIME NOT NULL,
+    sale_total DECIMAL(10,2) NOT NULL,
+    sale_is_closed BOOLEAN DEFAULT FALSE,
+    CONSTRAINT fk_sale_user FOREIGN KEY (user_id) REFERENCES user(user_id),
+    sale_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    sale_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
--- DESCRIBE purchase;
+-- DESCRIBE sale;
+
+CREATE TABLE sale_item(
+    sale_item_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sale_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    sale_item_total DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_sale_item_product FOREIGN KEY (product_id) REFERENCES product(product_id),
+    CONSTRAINT fk_sale_item_sale FOREIGN KEY (sale_id) REFERENCES sale(sale_id),
+    sale_item_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    sale_item_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- DESCRIBE sale_item;
+
