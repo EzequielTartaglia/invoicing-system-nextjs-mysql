@@ -7,7 +7,7 @@ export async function GET(request, { params }) {
   try {
     const { id } = params;
 
-    const result = await pool.query("SELECT * FROM product INNER JOIN category ON product.category_id = category.category_id WHERE product_id = ?;", [
+    const result = await pool.query("SELECT * FROM sale_item INNER JOIN sale ON sale.sale_id = sale_item.sale_id INNER JOIN product ON product.product_id = sale_item.product_id WHERE sale_item_id = ?;", [
       id
     ]);
     return NextResponse.json(result[0]);
@@ -20,7 +20,7 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = params;
 
-    await pool.query("DELETE FROM product WHERE product_id = ?", [id]);
+    await pool.query("DELETE FROM sale_item WHERE sale_item_id = ?", [id]);
     return NextResponse.json({}, { status: 204 });
   } catch (error) {
     return NextResponse.json({ message: error.message });
@@ -33,7 +33,7 @@ export async function PUT(request, { params }) {
   try {
     const { id } = params;
 
-    await pool.query("UPDATE product SET ? WHERE product_id = ?", [data, id]);
+    await pool.query("UPDATE sale_item SET ? WHERE sale_item_id = ?", [data, id]);
     return NextResponse.json({
       ...data,
       id: params.id,
