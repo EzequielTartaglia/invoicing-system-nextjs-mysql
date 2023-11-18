@@ -19,8 +19,10 @@ export default async function SalesPage() {
     const products = await loadProduct();
     const sales = await loadSales();
   
-    
-    // Filter valid `id` products 
+    // Ordenar ventas por fecha (de la más actual a la más antigua)
+    sales.sort((a, b) => new Date(b.sale_date) - new Date(a.sale_date));
+
+
     const validProducts = products.filter((product) => product.product_id !== undefined);
     const validSales = sales.filter((sale) => sale.sale_id !== undefined);
   
