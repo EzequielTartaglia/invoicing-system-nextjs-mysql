@@ -1,6 +1,8 @@
-import Button from '@/components/Button';
 import axios from 'axios'
 import Link from "next/link"; 
+import toast from "react-hot-toast";
+import Buttons from './Buttons';
+import { dateFormat } from "@/helpers/dateFormat";
 
 
 async function loadProducts() {
@@ -9,8 +11,8 @@ async function loadProducts() {
     return data;
   }
 
-async function loadSale(saleID) {
-    const { data } = await axios.get("http://localhost:3000/api/sales/" + saleID);
+async function loadSale(saleId) {
+    const { data } = await axios.get("http://localhost:3000/api/sales/" + saleId);
     console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
     return data.length > 0 ? data[0] : null;
@@ -32,16 +34,16 @@ export default async function SalesPage({ params }) {
         <table className="min-w-full border border-gray-300 ">
           <thead className="bg-blue-500 w-full text-white font-bold">
             <tr>
-              <th className="py-3 px-6 border-b">Usuario</th>
               <th className="py-3 px-6 border-b">Fecha</th>
+              <th className="py-3 px-6 border-b">Usuario</th>
               <th className="py-3 px-6 border-b">Estado</th>
             </tr>
           </thead>
           <tbody>   
               <tr key={sale.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
+                <td className="py-3 px-6 border-b text-center">{dateFormat(sale.sale_date)}</td>
                 <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
-                <td className="py-3 px-6 border-b text-center">{sale.sale_date}</td>
                 <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Cerrado" : "Abierto"}</td>
               </tr>
           </tbody>
@@ -81,9 +83,7 @@ export default async function SalesPage({ params }) {
       </table>
 
       <div className="flex justify-center mt-[50px]">
-        <Button href={`/sales`} text={`Finalizar compra`} className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          {params?.id.sale_is_closed ? "Actualizar producto" : "Agregar producto"}
-        </Button>
+      <Buttons saleId={sale.sale_id} saleState={sale.sale_is_closed} />
         </div>
 
       </div>

@@ -6,7 +6,7 @@ function Navbar() {
       <div className="container mx-auto flex justify-between items-center">
         
         <Link href="/">
-          <h3 className="text-3xl">Invoicing System</h3>
+          <h3 className="text-3xl">Sistema de gestion</h3>
         </Link>
         
         <ul className="flex space-x-4">

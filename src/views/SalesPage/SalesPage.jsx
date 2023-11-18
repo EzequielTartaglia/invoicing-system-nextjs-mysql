@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link"; 
 import Button from "@/components/Button";
+import { dateFormat } from "@/helpers/dateFormat";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -44,12 +45,12 @@ export default async function SalesPage() {
       <Button href="/sales/new" text="Agregar" />
     </div>
 
-  <div className="overflow-x-auto mt-[70px]">
+  <div className="overflow-x-auto mt-[20px]">
     <table className="min-w-full border border-gray-300 ">
       <thead className="bg-blue-500 w-full text-white font-bold">
         <tr>
-          <th className="py-3 px-6 border-b">Usuario</th>
           <th className="py-3 px-6 border-b">Fecha</th>
+          <th className="py-3 px-6 border-b">Usuario</th>
           <th className="py-3 px-6 border-b">Total</th>
           <th className="py-3 px-6 border-b">Estado</th>
           <th className="py-3 px-6 border-b">Acciones</th>
@@ -60,8 +61,8 @@ export default async function SalesPage() {
           
           <tr key={sale.sale_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
+            <td className="py-3 px-6 border-b text-center">{dateFormat(sale.sale_date)}</td>
             <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.sale_date}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_total}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Cerrado" : "Abierto"}</td>
             <td className="py-3 px-6 border-b text-center">
