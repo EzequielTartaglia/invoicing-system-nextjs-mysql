@@ -4,8 +4,11 @@ import Buttons from "./Buttons";
 
 async function loadProduct(productID){
   const { data } = await axios.get("http://localhost:3000/api/products/"+ productID);
-  return data[0]
+  console.log(data);
+  // Verifica si hay datos antes de acceder a la posición 0 del array
+  return data.length > 0 ? data[0] : null;
 }
+
 
 async function ProductPage({ params }) {
   const product = await loadProduct(params.id);

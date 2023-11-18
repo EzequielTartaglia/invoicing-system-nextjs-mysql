@@ -51,7 +51,7 @@ export default async function SalesPage() {
           <th className="py-3 px-6 border-b">Usuario</th>
           <th className="py-3 px-6 border-b">Fecha</th>
           <th className="py-3 px-6 border-b">Total</th>
-          <th className="py-3 px-6 border-b">Cerrado</th>
+          <th className="py-3 px-6 border-b">Estado</th>
           <th className="py-3 px-6 border-b">Acciones</th>
         </tr>
       </thead>
@@ -63,9 +63,9 @@ export default async function SalesPage() {
             <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_date}</td>
             <td className="py-3 px-6 border-b text-center">{sale.sale_total}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Si" : "No"}</td>
+            <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Cerrado" : "Abierto"}</td>
             <td className="py-3 px-6 border-b text-center">
-            <Link href={`/sale/${sale.sale_id}`} className="text-blue-500">
+            <Link href={`/sales/${sale.sale_id}`} className="text-blue-500">
             Ver
           </Link>
           </td>          
