@@ -98,17 +98,19 @@ export default async function SalesPage({ params }) {
           <tr>
             <th className="py-3 px-6 border-b">Nombre</th>
             <th className="py-3 px-6 border-b">Categoria</th>
+            <th className="py-3 px-6 border-b">Cantidad</th>
             <th className="py-3 px-6 border-b">Precio</th>
-            <th className="py-3 px-6 border-b">Unidades en stock</th>
             <th className="py-3 px-6 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
           {
-            validSaleItems.map((sale_item) => (
+            (validSaleItems.length === 0) 
+            ? <tr> <td className="py-3 px-6 border-b text-center"> No se han agregados items a la venta.</td> </tr>
+            : validSaleItems.map((sale_item) => (
             <tr key={sale_item.sale_item_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
-              <td className="py-3 px-6 border-b text-center">1</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.category_id}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.quantity}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.sale_item_total}</td>
               <td className="py-3 px-6 border-b text-center">
