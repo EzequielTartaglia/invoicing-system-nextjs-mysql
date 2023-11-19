@@ -47,7 +47,7 @@ export default async function SalesPage() {
       <Button href="/sales/new" text="Agregar" />
     </div>
 
-  <div className="overflow-x-auto mt-[20px]">
+  <div className="overflow-x-auto mt-0">
     <table className="min-w-full border border-gray-300 ">
       <thead className="bg-blue-500 w-full text-white font-bold">
         <tr>
