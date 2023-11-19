@@ -15,7 +15,7 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      products: res.data,
+      sales: res.data,
     },
   };
 };

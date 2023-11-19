@@ -78,7 +78,7 @@ useEffect(() => {
         className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-3 rounded"
         onClick={handleSubmit}
       >
-        Finalizar y cerrar Venta
+        Finalizar y cerrar
       </button>
     </div>
   );

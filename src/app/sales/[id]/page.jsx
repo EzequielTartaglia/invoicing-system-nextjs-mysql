@@ -7,24 +7,34 @@ import { dateFormat } from "@/helpers/dateFormat";
 async function loadProducts() {
     const { data } = await axios.get("http://localhost:3000/api/products");
     console.log(data);
-    return data;
+    return data.length > 0 ? data : [];
   }
 
 async function loadSale(saleId) {
     const { data } = await axios.get("http://localhost:3000/api/sales/" + saleId);
     console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
-    return data.length > 0 ? data[0] : null;
+    return data.length > 0 ? data[0] : [];
   }
-  
+
+async function loadSaleItems(saleId) {
+    const { data } = await axios.get("http://localhost:3000/api/sales/" + saleId +"/sale_items");
+    console.log(data);
+    // Verifica si hay datos antes de acceder a la posición 0 del array
+    return data.length > 0 ? data : [];
+  }
+
 export default async function SalesPage({ params }) {
     const products = await loadProducts();
     const sale = await loadSale(params.id);
+    const saleItems = await loadSaleItems(params.id);
+    
     console.log(sale)
-  
+    console.log(saleItems)
     
     // Filter valid `id` products 
     const validProducts = products.filter((product) => product.product_id !== undefined);
+    const validSaleItems = saleItems.filter((sale_item) => sale_item.sale_item_id !== undefined);
   
     if (validProducts.length === 0) return <h1>No se encuentran productos agregados en la base de datos.</h1>;
 
@@ -80,14 +90,43 @@ export default async function SalesPage({ params }) {
           ))}
         </tbody>
       </table>
-
-      <div className="flex justify-center mt-[50px]">
-      <Buttons saleId={sale.sale_id} saleState={sale.sale_is_closed} />
-        </div>
-
       </div>
       }
 
+      <table className="min-w-full border border-gray-300 mt-[40px]">
+        <thead className="bg-blue-500 w-full text-white font-bold">
+          <tr>
+            <th className="py-3 px-6 border-b">Nombre</th>
+            <th className="py-3 px-6 border-b">Categoria</th>
+            <th className="py-3 px-6 border-b">Precio</th>
+            <th className="py-3 px-6 border-b">Unidades en stock</th>
+            <th className="py-3 px-6 border-b">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            validSaleItems.map((sale_item) => (
+            <tr key={sale_item.sale_item_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <td className="py-3 px-6 border-b text-center">1</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.quantity}</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.sale_item_total}</td>
+              <td className="py-3 px-6 border-b text-center">
+              <Link href={``} className="text-blue-500">
+                Agregar
+              </Link>
+            </td>          
+            </tr>
+          ))
+          }
+        </tbody>
+      </table>
 
+      {sale.sale_is_closed == 0 &&        
+        <div className="flex justify-center mt-[50px]">
+          <Buttons saleId={sale.sale_id} saleState={sale.sale_is_closed} />
+        </div>
+      }
+      
       </div>);
   }

@@ -32,7 +32,7 @@ export default async function SalesPage() {
       return (
         <div className="h-5/6 grid place-items-center">
           <div className="overflow-x-auto mt-[70px]">
-            <h1 className="mb-4 text-center">No se encuentran ventas agregadas en la base de datos.</h1>
+            <h1 className="mb-0 text-center">No se encuentran ventas agregadas en la base de datos.</h1>
           </div>
           <div className="items-center mt-[50px]">
             <Button href="/sales/new" text="Agregar" />
