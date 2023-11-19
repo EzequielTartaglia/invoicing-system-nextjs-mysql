@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
 
     const { id } = params;
 
-    const results = await pool.query("SELECT * FROM sale_item INNER JOIN sale ON sale.sale_id = sale_item.sale_id INNER JOIN product ON product.product_id = sale_item.product_id WHERE sale_item.sale_id = ?;", [
+    const results = await pool.query("SELECT * FROM sale_item INNER JOIN sale ON sale.sale_id = sale_item.sale_id INNER JOIN product ON product.product_id = sale_item.product_id INNER JOIN category ON category.category_id = product.category_id WHERE sale_item.sale_id = ?;", [
       id
     ]);
     console.log(results[0])

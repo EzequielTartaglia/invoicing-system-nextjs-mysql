@@ -110,7 +110,7 @@ export default async function SalesPage({ params }) {
             : validSaleItems.map((sale_item) => (
             <tr key={sale_item.sale_item_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
               <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.category_id}</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.category_name}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.quantity}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.sale_item_total}</td>
               <td className="py-3 px-6 border-b text-center">
