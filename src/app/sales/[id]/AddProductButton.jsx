@@ -16,8 +16,7 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
     sale_item_total: productIdPrice
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleAddProduct = async (e) => {
     try {
         await axios.post(`http://localhost:3000/api/sale_items`, saleItem)
         console.log(saleItem)
@@ -37,7 +36,7 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
     <div className="flex gap-x-2 justify-end mt-2">
       <button
         className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-3 rounded"
-        onClick={handleSubmit}
+        onClick={handleAddProduct}
       >
         Agregar
       </button>

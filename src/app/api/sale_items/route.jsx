@@ -21,7 +21,7 @@ export async function POST(request) {
     const { sale_id, product_id, quantity, sale_item_total } = await request.json();
     console.log(sale_id, product_id, quantity, sale_item_total);
 
-    const result = await pool.query("INSERT INTO sale_items SET ?", {
+    const result = await pool.query("INSERT INTO sale_item SET ?", {
         sale_id,
         product_id,
         quantity,
