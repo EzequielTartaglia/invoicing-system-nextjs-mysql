@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Link from "next/link"; 
 import Buttons from './Buttons';
+import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
 
 
@@ -11,14 +12,14 @@ async function loadProducts() {
   }
 
 async function loadSale(saleId) {
-    const { data } = await axios.get("http://localhost:3000/api/sales/" + saleId);
+    const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}`);
     console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
     return data.length > 0 ? data[0] : [];
   }
 
 async function loadSaleItems(saleId) {
-    const { data } = await axios.get("http://localhost:3000/api/sales/" + saleId +"/sale_items");
+    const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}/sale_items`);
     console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
     return data.length > 0 ? data : [];
@@ -82,9 +83,7 @@ export default async function SalesPage({ params }) {
               <td className="py-3 px-6 border-b text-center">{product.product_price}</td>
               <td className="py-3 px-6 border-b text-center">{product.product_stock_quantity}</td>
               <td className="py-3 px-6 border-b text-center">
-              <Link href={``} className="text-blue-500">
-                Agregar
-              </Link>
+              <AddProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
             </td>          
             </tr>
           ))}
