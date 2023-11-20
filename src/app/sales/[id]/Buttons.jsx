@@ -4,7 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-function Buttons({ saleId, saleState }) {
+function Buttons({ saleId }) {
   const router = useRouter();
   const params = useParams();
 
@@ -27,9 +27,6 @@ useEffect(() => {
     }
 
   }, [params.id]);
-
-  const handleChange = ({ target: { name, value } }) =>
-  setSale({ ...sale, [name]: value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
