@@ -10,10 +10,12 @@ CREATE TABLE user(
     user_name VARCHAR(255) NOT NULL,
     user_last_name VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL UNIQUE,
+    user_account VARCHAR(255) NOT NULL UNIQUE,
     user_password VARCHAR(255) NOT NULL,
+    user_is_active BOOLEAN NOT NULL DEFAULT TRUE,
     user_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- DESCRIBE user;
 
 CREATE TABLE category(
@@ -22,7 +24,7 @@ CREATE TABLE category(
     category_description VARCHAR(400),
     category_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     category_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- DESCRIBE category;
 
 CREATE TABLE product(
@@ -34,8 +36,9 @@ CREATE TABLE product(
     product_stock_quantity INT,
     product_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     product_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(category_id)
-);
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id) 
+        REFERENCES category(category_id) ON DELETE RESTRICT ON UPDATE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- DESCRIBE product;
 
 CREATE TABLE sale(
@@ -44,10 +47,11 @@ CREATE TABLE sale(
     sale_date DATETIME NOT NULL,
     sale_total DECIMAL(10,2) NOT NULL,
     sale_is_closed BOOLEAN DEFAULT FALSE,
-    CONSTRAINT fk_sale_user FOREIGN KEY (user_id) REFERENCES user(user_id),
+    CONSTRAINT fk_sale_user FOREIGN KEY (user_id) 
+        REFERENCES user(user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     sale_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     sale_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- DESCRIBE sale;
 
 CREATE TABLE sale_item(
@@ -56,10 +60,12 @@ CREATE TABLE sale_item(
     product_id INT NOT NULL,
     quantity INT DEFAULT 1,
     sale_item_total DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_sale_item_product FOREIGN KEY (product_id) REFERENCES product(product_id),
-    CONSTRAINT fk_sale_item_sale FOREIGN KEY (sale_id) REFERENCES sale(sale_id),
+    CONSTRAINT fk_sale_item_product FOREIGN KEY (product_id) 
+        REFERENCES product(product_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_sale_item_sale FOREIGN KEY (sale_id) 
+        REFERENCES sale(sale_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     sale_item_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     sale_item_modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- DESCRIBE sale_item;
 

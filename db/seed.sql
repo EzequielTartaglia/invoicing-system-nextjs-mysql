@@ -1,7 +1,7 @@
 -- Insert data to get a seed DB
 
-INSERT INTO user (user_name, user_last_name, user_email, user_password, user_created, user_modified) VALUES
-  ('Ezequiel', 'Tartaglia', 'ezequielmtartaglia@gmail.com','123123123',now(),now());
+INSERT INTO user (user_name, user_last_name, user_email, user_account, user_password, user_is_active, user_created, user_modified) VALUES
+  ('Ezequiel', 'Tartaglia', 'ezequielmtartaglia@gmail.com',"Ezequiel Software Engineer",'123123123',TRUE,now(),now());
 
 INSERT INTO category (category_name, category_description) VALUES
   ('Bebidas', 'Bebidas con alcohol, bebidas sin alcohol, etc.'),
