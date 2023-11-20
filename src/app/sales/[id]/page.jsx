@@ -114,7 +114,7 @@ export default async function SalesPage({ params }) {
               <td className="py-3 px-6 border-b text-center">{sale_item.sale_item_total}</td>
               <td className="py-3 px-6 border-b text-center">
               <Link href={``} className="text-blue-500">
-                Agregar
+                ...
               </Link>
             </td>          
             </tr>
