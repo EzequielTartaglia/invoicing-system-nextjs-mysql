@@ -20,7 +20,9 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = params;
 
+    await pool.query("DELETE FROM sale_item WHERE sale_id = ?", [id]);
     await pool.query("DELETE FROM sale WHERE sale_id = ?", [id]);
+
     return NextResponse.json({}, { status: 204 });
   } catch (error) {
     return NextResponse.json({ message: error.message });
