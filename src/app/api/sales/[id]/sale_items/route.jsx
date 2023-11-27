@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
 
     const { id } = params;
 
-    const results = await pool.query("SELECT * FROM sale_item INNER JOIN sale ON sale.sale_id = sale_item.sale_id INNER JOIN product ON product.product_id = sale_item.product_id INNER JOIN category ON category.category_id = product.category_id WHERE sale_item.sale_id = ?;", [
+    const results = await pool.query("SELECT product.product_id, product_name, category_name, SUM(sale_item.quantity) AS product_sale_total_quantity, SUM(sale_item.sale_item_total) AS product_sale_total_price, sale_item.sale_id, sale_is_closed FROM sale_item INNER JOIN sale ON sale.sale_id = sale_item.sale_id INNER JOIN product ON product.product_id = sale_item.product_id INNER JOIN category ON category.category_id = product.category_id WHERE sale_item.sale_id = ? GROUP BY product.product_id, product_name, category_name, sale_item.sale_id, sale_is_closed;;", [
       id
     ]);
     console.log(results[0])
@@ -20,3 +20,4 @@ export async function GET(request, { params }) {
     );
   }
 }
+

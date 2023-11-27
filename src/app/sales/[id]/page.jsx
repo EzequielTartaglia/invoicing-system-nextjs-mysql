@@ -35,7 +35,7 @@ export default async function SalesPage({ params }) {
     
     // Filter valid `id` products 
     const validProducts = products.filter((product) => product.product_id !== undefined);
-    const validSaleItems = saleItems.filter((sale_item) => sale_item.sale_item_id !== undefined);
+    const validSaleItems = saleItems.filter((sale_item) => sale_item.product_id !== undefined);
   
     if (validProducts.length === 0) return <h1>No se encuentran productos agregados en la base de datos.</h1>;
 
@@ -99,7 +99,6 @@ export default async function SalesPage({ params }) {
             <th className="py-3 px-6 border-b">Categoria</th>
             <th className="py-3 px-6 border-b">Cantidad</th>
             <th className="py-3 px-6 border-b">Precio</th>
-            <th className="py-3 px-6 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -107,16 +106,11 @@ export default async function SalesPage({ params }) {
             (validSaleItems.length === 0) 
             ? <tr> <td className="py-3 px-6 border-b text-center"> No se han agregados items a la venta.</td> </tr>
             : validSaleItems.map((sale_item) => (
-            <tr key={sale_item.sale_item_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <tr key={sale_item.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
               <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.category_name}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.quantity}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.sale_item_total}</td>
-              <td className="py-3 px-6 border-b text-center">
-              <Link href={``} className="text-blue-500">
-                ...
-              </Link>
-            </td>          
+              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
+              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>         
             </tr>
           ))
           }
