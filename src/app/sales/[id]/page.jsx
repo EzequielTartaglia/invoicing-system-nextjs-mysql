@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Link from "next/link"; 
 import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
