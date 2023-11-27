@@ -1,9 +1,7 @@
 import axios from 'axios'
-import Link from "next/link"; 
 import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
-
 
 async function loadProducts() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -118,7 +116,7 @@ export default async function SalesPage({ params }) {
       </table>
 
       {sale.sale_is_closed == 0 &&        
-        <div className="flex justify-center mt-[50px]">
+        <div className="flex justify-center">
           <Buttons saleId={sale.sale_id} />
         </div>
       }
