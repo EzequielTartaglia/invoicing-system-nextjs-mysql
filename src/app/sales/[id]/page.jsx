@@ -1,7 +1,9 @@
 import axios from 'axios'
+import Link from "next/link"; 
 import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
+import DeleteAllProductIdButton from './DeleteAllProductIdButton';
 
 async function loadProducts() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -97,6 +99,7 @@ export default async function SalesPage({ params }) {
             <th className="py-3 px-6 border-b">Categoria</th>
             <th className="py-3 px-6 border-b">Cantidad</th>
             <th className="py-3 px-6 border-b">Precio</th>
+            <th className="py-3 px-6 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -108,7 +111,10 @@ export default async function SalesPage({ params }) {
               <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.category_name}</td>
               <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>         
+              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>
+              <td className="py-3 px-6 border-b text-center">
+              <DeleteAllProductIdButton saleId={sale_item.sale_id} productId={sale_item.product_id}/>
+              </td>          
             </tr>
           ))
           }
@@ -116,7 +122,7 @@ export default async function SalesPage({ params }) {
       </table>
 
       {sale.sale_is_closed == 0 &&        
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-[50px]">
           <Buttons saleId={sale.sale_id} />
         </div>
       }

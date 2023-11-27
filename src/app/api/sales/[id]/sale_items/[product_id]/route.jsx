@@ -37,3 +37,16 @@ export async function PUT(request, { params }) {
       return NextResponse.json({ message: error.message });
     }
   }
+
+  export async function DELETE(request, { params }) {
+    try {
+      const { id, product_id } = params;
+  
+      await pool.query("DELETE FROM sale_item WHERE sale_id = ? AND product_id = ?", [id, product_id]);
+  
+      return NextResponse.json({}, { status: 204 });
+    } catch (error) {
+      return NextResponse.json({ message: error.message });
+    }
+  }
+  
