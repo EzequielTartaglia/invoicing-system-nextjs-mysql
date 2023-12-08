@@ -78,11 +78,13 @@ useEffect(() => {
       </button>
 
       <CreateSaleButton  onClick={async() => {  
-      await await axios.put("/api/sales/" + saleId, {
+      await axios.put("/api/sales/" + saleId, {
         sale_is_closed: 1,
-    });
-    }} text={"Finalizar e iniciar nueva venta"}/>
-      
+      });
+      //Print ticket
+      await window.print();
+      }} 
+      text={"Finalizar e iniciar nueva venta"}/>
     </div>
   );
   
