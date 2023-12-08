@@ -22,12 +22,12 @@ export default function TotalSalePrice({ saleId }) {
 
     const intervalId = setInterval(() => {
       fetchSale(saleId);
-    }, 1);
+    }, 100);
 
     // Limpia el intervalo cuando el componente se desmonta
     return () => clearInterval(intervalId);
 
-  }, [saleId, router]);
+  }, [saleId]);
 
   return (
     <div className="">
