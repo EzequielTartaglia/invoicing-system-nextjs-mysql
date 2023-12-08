@@ -116,10 +116,10 @@ export default async function SalesPage({ params }) {
             </tr>
           ))
           }
-          <td className="py-1 px-6 border-b text-end"> <TotalSalePrice saleId={sale.sale_id} /> </td>
         </tbody>
       </table>
-
+      <span className="px-6 text-end"> <TotalSalePrice saleId={sale.sale_id}/> </span>
+      
       {sale.sale_is_closed == 0 &&        
         <div className="flex justify-center mt-[50px]">
           <Buttons saleId={sale.sale_id} />

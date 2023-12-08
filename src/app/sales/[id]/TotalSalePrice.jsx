@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function TotalSalePrice({ saleId }) {
   
     const [totalPrice, setTotalPrice] = useState(0);
+    const [forceRender, setForceRender] = useState(false);
 
 
     useEffect(() => {
@@ -15,6 +16,8 @@ export default function TotalSalePrice({ saleId }) {
             // Sumar todos los product_sale_total_price
             const totalPrices = data.reduce((total, product) => total + parseFloat(product.product_sale_total_price), 0);
             setTotalPrice(totalPrices);
+            setForceRender(prev => !prev); // Cambiar el estado para forzar una renderización
+
             console.log(totalPrices);
             } else {
             console.warn("No data returned from the API.");
@@ -25,10 +28,9 @@ export default function TotalSalePrice({ saleId }) {
         };
     
         fetchData();
-    }, [saleId]);
-
+    }, [saleId, forceRender]);
   
   return (
-    <div>Total: {totalPrice !== 0 ? `$${totalPrice}` : 'Cargando...'}</div>
+    <div className="">Total: {totalPrice !== 0 ? `$ ${totalPrice}` : 'Cargando...'}</div>
   );
 }
