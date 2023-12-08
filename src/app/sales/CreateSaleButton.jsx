@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 
 
 // Define the component
-export default function CreateSaleButton({ onClick, text }) {
-    // State to store the newly created sale ID
+export default function CreateSaleButton({ onClick, text, buttonColor }) {
+    
+    const buttonColorClass = buttonColor || 'bg-blue-500 hover:bg-blue-700';
 
     // Router for navigation
     const router = useRouter();
@@ -48,7 +49,7 @@ export default function CreateSaleButton({ onClick, text }) {
     return (
         <div>
             {/* Use button for navigation */}
-            <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+            <button type="button" className={`${buttonColorClass} text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
             onClick={handleButtonClick}>
             { text }</button>
         </div>

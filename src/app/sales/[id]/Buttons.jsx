@@ -60,21 +60,16 @@ useEffect(() => {
   
       <ClearCart saleId={saleId} />
   
-      <button
-        className="text-white bg-red-500 hover:bg-red-700 py-2 px-3 rounded"
-        onClick={async () => {
+        <CreateSaleButton buttonColor={'bg-red-500 hover:bg-red-700'} onClick={async() => {  
           if (confirm("¿Estás seguro que quieres eliminar esta venta?")) {
             const res = await axios.delete("/api/sales/" + saleId);
             //if (res.status === 204) {
             router.push("/sales");
             router.refresh();
             //}
-          }
-        }}
-      >
-        Eliminar venta
-      </button>
-  
+          };
+      }} text={"Eliminar venta"}/>
+      
       <button
         className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-5 rounded"
         onClick={handleSubmit}
