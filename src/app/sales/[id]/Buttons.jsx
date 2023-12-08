@@ -83,7 +83,9 @@ useEffect(() => {
       </button>
 
       <CreateSaleButton  onClick={async() => {  
-      await alert("Se ha creado una nueva venta");
+      await await axios.put("/api/sales/" + saleId, {
+        sale_is_closed: 1,
+    });
     }} text={"Finalizar e iniciar nueva venta"}/>
       
     </div>
