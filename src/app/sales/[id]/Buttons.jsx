@@ -29,6 +29,10 @@ useEffect(() => {
 
   }, [saleId]);
 
+  const printSaleTicket = (saleId) => {
+    window.print()
+  }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -82,7 +86,7 @@ useEffect(() => {
         sale_is_closed: 1,
       });
       //Print ticket
-      await window.print();
+      await printSaleTicket();
       }} 
       text={"Finalizar e iniciar nueva venta"}/>
     </div>
