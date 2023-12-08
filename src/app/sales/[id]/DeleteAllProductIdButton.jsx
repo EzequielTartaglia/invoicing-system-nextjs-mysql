@@ -1,11 +1,10 @@
 'use client'
 import axios from "axios";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function DeleteAllProductIdButton({ saleId, productId }) {
     const router = useRouter();
-    const params = useParams();
 
     useEffect(() => {
         const fetchSale = async (id) => {
@@ -17,11 +16,11 @@ export default function DeleteAllProductIdButton({ saleId, productId }) {
             }
           };
     
-        if (params?.id) {
-            fetchSale(params.id);
+        if (saleId) {
+            fetchSale(saleId);
         }
     
-      }, [params.id]);
+      }, [saleId]);
     
   return (
     <button
