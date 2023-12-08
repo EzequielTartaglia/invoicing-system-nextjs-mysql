@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 export default function ClearCart({ saleId }) {
     const router = useRouter();

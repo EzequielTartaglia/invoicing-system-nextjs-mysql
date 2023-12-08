@@ -33,9 +33,9 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
 
 
   return (<>
-    <div className="flex gap-x-2 justify-end mt-2">
+    <div className="flex gap-x-2 justify-end">
       <button
-        className="text-white bg-gray-500 hover:bg-gray-600 py-2 px-3 rounded"
+        className="text-white bg-gray-500 hover:bg-gray-600 py-1 px-3 rounded"
         onClick={handleAddProduct}
       >+</button>
     </div>

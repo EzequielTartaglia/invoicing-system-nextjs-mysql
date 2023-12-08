@@ -25,7 +25,7 @@ export default function DeleteAllProductIdButton({ saleId, productId }) {
     
   return (
     <button
-        className="text-white bg-red-500 hover:bg-red-700 py-2 px-3 rounded"
+        className="text-white bg-red-500 hover:bg-red-700 py-1 px-3 rounded"
         onClick={async () => {
             const res = await axios.delete(`http://localhost:3000/api/sales/${saleId}/sale_items/${productId}`);
               router.refresh();

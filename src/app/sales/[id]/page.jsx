@@ -3,6 +3,7 @@ import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
 import DeleteAllProductIdButton from './DeleteAllProductIdButton';
+import TotalSalePrice from './TotalSalePrice';
 
 async function loadProducts() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -41,19 +42,17 @@ export default async function SalesPage({ params }) {
     return (<div>
         <div className="overflow-x-auto mb-[70px]">
         <table className="min-w-full border border-gray-300 ">
-          <thead className="bg-blue-500 w-full text-white font-bold">
+          <thead className="bg-blue-500 w-2 text-white font-bold">
             <tr>
-              <th className="py-3 px-6 border-b">Fecha</th>
-              <th className="py-3 px-6 border-b">Usuario</th>
-              <th className="py-3 px-6 border-b">Estado</th>
+              <th className="py-1 px-6 border-b">Fecha</th>
+              <th className="py-1 px-6 border-b">Usuario</th>
             </tr>
           </thead>
           <tbody>   
               <tr key={sale.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
-                <td className="py-3 px-6 border-b text-center">{dateFormat(sale.sale_date)}</td>
-                <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
-                <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Cerrado" : "Abierto"}</td>
+                <td className="py-1 px-6 border-b text-center">{dateFormat(sale.sale_date)}</td>
+                <td className="py-1 px-6 border-b text-center">{sale.user_name}</td>
               </tr>
           </tbody>
         </table>
@@ -65,11 +64,11 @@ export default async function SalesPage({ params }) {
       <table className="min-w-full border border-gray-300 ">
         <thead className="bg-blue-500 w-full text-white font-bold">
           <tr>
-            <th className="py-3 px-6 border-b">Nombre</th>
-            <th className="py-3 px-6 border-b">Categoria</th>
-            <th className="py-3 px-6 border-b">Precio</th>
-            <th className="py-3 px-6 border-b">Unidades en stock</th>
-            <th className="py-3 px-6 border-b">Acciones</th>
+            <th className="py-1 px-6 border-b">Nombre</th>
+            <th className="py-1 px-6 border-b">Categoria</th>
+            <th className="py-1 px-6 border-b">Precio</th>
+            <th className="py-1 px-6 border-b">Unidades en stock</th>
+            <th className="py-1 px-6 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -77,11 +76,11 @@ export default async function SalesPage({ params }) {
             
             <tr key={product.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
-              <td className="py-3 px-6 border-b text-center">{product.product_name}</td>
-              <td className="py-3 px-6 border-b text-center">{product.category_name}</td>
-              <td className="py-3 px-6 border-b text-center">{product.product_price}</td>
-              <td className="py-3 px-6 border-b text-center">{product.product_stock_quantity}</td>
-              <td className="py-3 px-6 border-b text-center">
+              <td className="py-1 px-6 border-b text-center">{product.product_name}</td>
+              <td className="py-1 px-6 border-b text-center">{product.category_name}</td>
+              <td className="py-1 px-6 border-b text-center">{product.product_price}</td>
+              <td className="py-1 px-6 border-b text-center">{product.product_stock_quantity}</td>
+              <td className="py-1 px-6 border-b text-center">
               <AddProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
             </td>          
             </tr>
@@ -94,29 +93,30 @@ export default async function SalesPage({ params }) {
       <table className="min-w-full border border-gray-300 mt-[40px]">
         <thead className="bg-blue-500 w-full text-white font-bold">
           <tr>
-            <th className="py-3 px-6 border-b">Nombre</th>
-            <th className="py-3 px-6 border-b">Categoria</th>
-            <th className="py-3 px-6 border-b">Cantidad</th>
-            <th className="py-3 px-6 border-b">Precio</th>
-            <th className="py-3 px-6 border-b">Acciones</th>
+            <th className="py-1 px-6 border-b">Nombre</th>
+            <th className="py-1 px-6 border-b">Categoria</th>
+            <th className="py-1 px-6 border-b">Cantidad</th>
+            <th className="py-1 px-6 border-b">Precio</th>
+            <th className="py-1 px-6 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
           {
             (validSaleItems.length === 0) 
-            ? <tr> <td className="py-3 px-6 border-b text-center"> No se han agregados items a la venta.</td> </tr>
+            ? <tr> <td className="py-1 px-6 border-b text-center"> No se han agregados items a la venta.</td> </tr>
             : validSaleItems.map((sale_item) => (
             <tr key={sale_item.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
-              <td className="py-3 px-6 border-b text-center">{sale_item.product_name}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.category_name}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
-              <td className="py-3 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>
-              <td className="py-3 px-6 border-b text-center">
+              <td className="py-1 px-6 border-b text-center">{sale_item.product_name}</td>
+              <td className="py-1 px-6 border-b text-center">{sale_item.category_name}</td>
+              <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
+              <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>
+              <td className="py-1 px-6 border-b text-center">
               <DeleteAllProductIdButton saleId={sale_item.sale_id} productId={sale_item.product_id}/>
               </td>          
             </tr>
           ))
           }
+          <td className="py-1 px-6 border-b text-end"> <TotalSalePrice saleId={sale.sale_id} /> </td>
         </tbody>
       </table>
 
