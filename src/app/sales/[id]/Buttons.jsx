@@ -32,7 +32,7 @@ useEffect(() => {
   const printSaleTicket = (saleId) => {
     window.print()
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -85,6 +85,7 @@ useEffect(() => {
       await axios.put("/api/sales/" + saleId, {
         sale_is_closed: 1,
       });
+      await router.refresh();
       //Print ticket
       await printSaleTicket();
       }} 

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter, useParams } from "next/navigation";
 
 export function SaleForm() {
+  
   const [sale, setSale] = useState({
     user_id: 1,
     sale_date: new Date().toISOString().split('T')[0],
