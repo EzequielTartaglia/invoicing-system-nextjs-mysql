@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ClearCart from "./ClearCart";
+import CreateSaleButton from "../CreateSaleButton";
 
 function Buttons({ saleId }) {
   const router = useRouter();
@@ -81,12 +82,10 @@ useEffect(() => {
         Cerrar venta
       </button>
 
-      <button
-        className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-5 rounded"
-        onClick={handleSubmit}
-      >
-        Finalizar e iniciar nueva venta
-      </button>
+      <CreateSaleButton  onClick={async() => {  
+      await alert("Se ha creado una nueva venta");
+    }} text={"Finalizar e iniciar nueva venta"}/>
+      
     </div>
   );
   

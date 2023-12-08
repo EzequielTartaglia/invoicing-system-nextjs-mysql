@@ -2,6 +2,7 @@ import axios from "axios";
 import Link from "next/link"; 
 import Button from "@/components/Button";
 import { dateFormat } from "@/helpers/dateFormat";
+import CreateSaleButton from "../../app/sales/CreateSaleButton";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -44,8 +45,9 @@ export default async function SalesPage() {
     return (<div>
 
       <div className="py-2 flex justify-end items-center">
-      <Button href="/sales/new" text="Agregar" />
+      <CreateSaleButton text={"Agregar"}/>
     </div>
+
 
   <div className="overflow-x-auto mt-0">
     <table className="min-w-full border border-gray-300 ">

@@ -97,7 +97,7 @@ export default async function SalesPage({ params }) {
             <th className="py-1 px-6 border-b">Categoria</th>
             <th className="py-1 px-6 border-b">Cantidad</th>
             <th className="py-1 px-6 border-b">Precio</th>
-            <th className="py-1 px-6 border-b">Acciones</th>
+            {sale.sale_is_closed == 0 && <th className="py-1 px-6 border-b">Acciones</th>}
           </tr>
         </thead>
         <tbody>
@@ -110,9 +110,7 @@ export default async function SalesPage({ params }) {
               <td className="py-1 px-6 border-b text-center">{sale_item.category_name}</td>
               <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
               <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>
-              <td className="py-1 px-6 border-b text-center">
-              <DeleteAllProductIdButton saleId={sale_item.sale_id} productId={sale_item.product_id}/>
-              </td>          
+              {sale.sale_is_closed == 0 && <td className="py-1 px-6 border-b text-center"><DeleteAllProductIdButton saleId={sale_item.sale_id} productId={sale_item.product_id}/></td>}         
             </tr>
           ))
           }
