@@ -31,6 +31,6 @@ export default function TotalSalePrice({ saleId }) {
     }, [saleId, forceRender]);
   
   return (
-    <div className="">Total: {totalPrice !== 0 ? `$ ${totalPrice}` : 'Cargando...'}</div>
+    <div className="">Total: {totalPrice !== 0 ? `$ ${totalPrice}` : 'Esperando...'}</div>
   );
 }
