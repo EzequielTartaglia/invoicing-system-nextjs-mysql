@@ -102,9 +102,8 @@ export default async function SalesPage({ params }) {
         </thead>
         <tbody>
           {
-            (validSaleItems.length === 0) 
-            ? <tr> <td className="py-1 px-6 border-b text-center"> No se han agregados items a la venta.</td> </tr>
-            : validSaleItems.map((sale_item) => (
+            (validSaleItems.length > 0) &&
+            validSaleItems.map((sale_item) => (
             <tr key={sale_item.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
               <td className="py-1 px-6 border-b text-center">{sale_item.product_name}</td>
               <td className="py-1 px-6 border-b text-center">{sale_item.category_name}</td>
@@ -116,7 +115,16 @@ export default async function SalesPage({ params }) {
           }
         </tbody>
       </table>
-      <span className="px-6 text-end"> <TotalSalePrice saleId={sale.sale_id}/> </span>
+      
+      {
+            (validSaleItems.length === 0) 
+            ? <div className="flex items-center justify-between">
+                <span className="py-1 px-6 text-center"> No se han agregados items a la venta.</span>
+                <span className="px-6 text-end"> <TotalSalePrice saleId={sale.sale_id}/> </span>
+              </div>
+            : <span className="px-6 text-end"> <TotalSalePrice saleId={sale.sale_id}/> </span>
+      }
+
       
       {sale.sale_is_closed == 0 &&        
         <div className="flex justify-center mt-[50px]">

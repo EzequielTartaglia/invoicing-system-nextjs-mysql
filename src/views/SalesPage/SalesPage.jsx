@@ -36,7 +36,7 @@ export default async function SalesPage() {
             <h1 className="mb-0 text-center">No se encuentran ventas agregadas en la base de datos.</h1>
           </div>
           <div className="items-center mt-[50px]">
-            <Button href="/sales/new" text="Agregar" />
+            <CreateSaleButton text={"Agregar"}/>
           </div>
         </div>
       );
