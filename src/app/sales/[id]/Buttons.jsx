@@ -1,13 +1,12 @@
 "use client";
 import axios from "axios";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ClearCart from "./ClearCart";
 
 function Buttons({ saleId }) {
   const router = useRouter();
-  const params = useParams();
 
   const [sale, setSale] = useState({
     sale_is_closed: 0,
@@ -23,17 +22,17 @@ useEffect(() => {
         }
       };
 
-    if (params?.id) {
-        fetchSale(params.id);
+    if (saleId) {
+        fetchSale(saleId);
     }
 
-  }, [params.id]);
+  }, [saleId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (params?.id) {
-        await axios.put("/api/sales/" + params.id, {
+      if (saleId) {
+        await axios.put("/api/sales/" + saleId, {
             sale_is_closed: 1,
         });
 
