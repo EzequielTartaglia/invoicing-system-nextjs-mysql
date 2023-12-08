@@ -10,6 +10,13 @@ export async function GET(request, { params }) {
       [id, product_id]
     );
 
+    //Suma total
+    const total_sale_prices = results[0].reduce((total, result) => total + parseFloat(result.product_sale_total_price), 0);
+    results[0].total_sale_prices = total_sale_prices;
+
+    // Actualizar el campo 'sale_total' en la tabla 'sale'
+    await pool.query("UPDATE sale SET sale_total = ? WHERE sale_id = ?", [total_sale_prices, id]);
+
     console.log(results[0])
     return NextResponse.json(results[0]);
   } catch (error) {
