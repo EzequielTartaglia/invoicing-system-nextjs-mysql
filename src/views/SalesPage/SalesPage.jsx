@@ -1,8 +1,8 @@
 import axios from "axios";
 import Link from "next/link"; 
-import Button from "@/components/Button";
 import { dateFormat } from "@/helpers/dateFormat";
 import CreateSaleButton from "../../app/sales/CreateSaleButton";
+import SaleTableWithPaginator from "./SaleTableWithPaginator";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -42,44 +42,14 @@ export default async function SalesPage() {
       );
     }
     
-    return (<div>
+    return (
+    <div>
 
       <div className="py-2 flex justify-end items-center">
-      <CreateSaleButton text={"Agregar"}/>
-    </div>
+        <CreateSaleButton text={"Agregar"}/>
+      </div>
 
+      <SaleTableWithPaginator validSales={validSales}/>
 
-  <div className="overflow-x-auto mt-0">
-    <table className="min-w-full border border-gray-300 ">
-      <thead className="bg-blue-500 w-full text-white font-bold">
-        <tr>
-          <th className="py-3 px-6 border-b">Fecha</th>
-          <th className="py-3 px-6 border-b">Usuario</th>
-          <th className="py-3 px-6 border-b">Total</th>
-          <th className="py-3 px-6 border-b">Estado</th>
-          <th className="py-3 px-6 border-b">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {validSales.map((sale) => (
-          
-          <tr key={sale.sale_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
-          >
-            <td className="py-3 px-6 border-b text-center">{dateFormat(sale.sale_date)}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.user_name}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.sale_total}</td>
-            <td className="py-3 px-6 border-b text-center">{sale.sale_is_closed ? "Cerrado" : "Abierto"}</td>
-            <td className="py-3 px-6 border-b text-center">
-            <Link href={`/sales/${sale.sale_id}`} className="text-blue-500">
-            Ver
-          </Link>
-          </td>          
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    
-  </div>
-  
-      </div>);
+    </div>);
   }
