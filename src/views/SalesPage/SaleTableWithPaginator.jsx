@@ -3,7 +3,12 @@ import Link from "next/link";
 import { dateFormat } from "@/helpers/dateFormat";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight, faAngleDoubleLeft, faAngleDoubleRight, } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function SaleTableWithPaginator({ validSales }) {
   const itemsPerPage = 10;
@@ -57,6 +62,7 @@ export default function SaleTableWithPaginator({ validSales }) {
                 <td className="py-3 px-6 border-b text-center">
                   {dateFormat(sale.sale_date)}
                 </td>
+
                 <td className="py-3 px-6 border-b text-center">
                   {sale.user_name}
                 </td>
@@ -84,25 +90,25 @@ export default function SaleTableWithPaginator({ validSales }) {
           <button
             onClick={goToFirstPage}
             className={`mx-2 ${
-                currentPage === 1
-                  ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
-              } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
-            >
+              currentPage === 1
+                ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
+            } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
+          >
             <FontAwesomeIcon icon={faAngleDoubleLeft} />
           </button>
 
-            <button
-              onClick={goToPreviousPage}
-              disabled={currentPage === 1}
-              className={`mx-2 ${
-                currentPage === 1
-                  ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
-              } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
-            >
-              <FontAwesomeIcon icon={faAngleLeft} />
-            </button>
+          <button
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+            className={`mx-2 ${
+              currentPage === 1
+                ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
+            } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
+          >
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </button>
         </div>
 
         <span>
@@ -114,22 +120,22 @@ export default function SaleTableWithPaginator({ validSales }) {
             onClick={goToNextPage}
             disabled={currentPage === totalPages}
             className={`mx-2 ${
-                currentPage === totalPages
-                  ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
-              } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
-            >
+              currentPage === totalPages
+                ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
+            } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
+          >
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
 
           <button
             onClick={goToLastPage}
             className={`mx-2 ${
-                currentPage === totalPages
-                  ? "bg-gray-300 text-gray-700 cursor-not-allowed"
-                  : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
-              } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
-            >
+              currentPage === totalPages
+                ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700 text-white font-bold"
+            } py-1 px-2 rounded focus:outline-none focus:shadow-outline`}
+          >
             <FontAwesomeIcon icon={faAngleDoubleRight} />
           </button>
         </div>
