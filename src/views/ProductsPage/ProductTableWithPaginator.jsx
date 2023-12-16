@@ -46,7 +46,6 @@ export default function ProductTableWithPaginator({ validProducts }) {
           <thead className="bg-blue-500 w-full text-white font-bold">
             <tr>
               <th className="py-3 px-6 border-b">Nombre</th>
-
               <th className="py-3 px-6 border-b">Categoria</th>
               <th className="py-3 px-6 border-b">Precio</th>
               <th className="py-3 px-6 border-b">Cantidad</th>
