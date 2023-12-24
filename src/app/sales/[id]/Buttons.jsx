@@ -70,10 +70,19 @@ function Buttons({ saleId, saleItems}) {
                 .join("")}
             </tbody>
           </table>
-            </div>
+          </div>
           <hr style="border: 1px solid #000;margin: 10px 0;">
-          <div style="text-align: right;">
-            Total a pagar: $${sale.sale_total}
+
+          <div style="text-align: center;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+          <thead>
+            <tr>
+            <th style="text-align:left; padding-left: 160px;"></th>
+            <th style="text-align:center; padding: 8px;">Total</th>
+            <th style="text-align:right; padding-right: 80px;"> ${sale.sale_total}</th>
+            </tr>
+            </thead>
+        </table>
           </div>
         </body>
       </html>
