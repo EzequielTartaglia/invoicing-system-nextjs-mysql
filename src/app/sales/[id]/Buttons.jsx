@@ -40,15 +40,28 @@ useEffect(() => {
           <hr style="border: 1px solid #000;margin: 10px 0;">
           <div style="text-align: center;">
             <h2 style="font-size: 18px;margin-bottom: 10px;">TICKET N°${saleId}</h2>
-            <ul style="list-style-type: none;padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+            <thead>
+              <tr>
+              <th style="text-align:left; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Concepto</th>
+              <th style="text-align:center; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Cant.</th>
+              <th style="text-align:center; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Neto</th>            </tr>
+            </thead>
+            <tbody>
               ${saleItems
                 .map(
-                  (item) =>
-                    `<li style="margin-bottom: 5px;">${item.product_name} - ${item.product_sale_total_quantity} unidades</li>`
+                  (item) => `
+                    <tr>
+                      <td style="text-align:left; padding: 8px;">${item.product_name}</td>
+                      <td style="text-align:center; padding: 8px;">${item.product_sale_total_quantity}</td>
+                      <td style="text-align:center; padding: 8px;">${item.product_sale_total_price}</td>
+                    </tr>
+                  `
                 )
                 .join("")}
-            </ul>
-          </div>
+            </tbody>
+          </table>
+            </div>
           <hr style="border: 1px solid #000;margin: 10px 0;">
         </body>
       </html>
