@@ -33,27 +33,13 @@ useEffect(() => {
     const printContent = `
       <html>
         <head>
-          <style>
-            body {
-              font-family: 'Arial', sans-serif;
-              background-color: #fff;
-              margin: 10mm;
-              font-size: 14px;
-            }
-            h1 {
-              text-align: center;
-              font-size: 24px;
-              margin-bottom: 10px;
-            }
-
-          </style>
           <title>Ticket</title>
         </head>
-        <body>
-          <h1>Ticket de venta ID:${saleId}</h1>
+        <body style="font-family: 'Arial', sans-serif;background-color: #fff;margin: 10mm;font-size: 14px;">
+          <h1 style="text-align: center;font-size: 24px;margin-bottom: 10px;">Sistema de gestion</h1>
           <hr style="border: 1px solid #000;margin: 10px 0;">
           <div style="text-align: center;">
-            <h2 style="font-size: 18px;margin-bottom: 10px;">Ticket</h2>
+            <h2 style="font-size: 18px;margin-bottom: 10px;">TICKET N°${saleId}</h2>
             <ul style="list-style-type: none;padding: 0;">
               ${saleItems
                 .map(
@@ -63,6 +49,7 @@ useEffect(() => {
                 .join("")}
             </ul>
           </div>
+          <hr style="border: 1px solid #000;margin: 10px 0;">
         </body>
       </html>
     `;
@@ -70,18 +57,15 @@ useEffect(() => {
     const iframe = document.createElement("iframe");
     iframe.style.display = "none";
     document.body.appendChild(iframe);
-  
-    // Write content to the iframe
+
     iframe.contentDocument.write(printContent);
     iframe.contentDocument.close();
-  
-    // Print the content in the iframe
+
     iframe.contentWindow.print();
-  
-    // Remove the iframe from the document
+
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 1000); // Delay removal to ensure print dialog appears
+    }, 1000); 
 
   };
   
