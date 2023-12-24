@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import ClearCart from "./ClearCart";
 import CreateSaleButton from "../CreateSaleButton";
 
-function Buttons({ saleId }) {
+function Buttons({ saleId, saleItems}) {
   const router = useRouter();
 
   const [sale, setSale] = useState({
@@ -29,9 +29,63 @@ useEffect(() => {
 
   }, [saleId]);
 
-  const printSaleTicket = (saleId) => {
-    window.print()
-  }
+  const printSaleTicket = () => {
+    const printContent = `
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: 'Arial', sans-serif;
+              background-color: #fff;
+              margin: 10mm;
+              font-size: 14px;
+            }
+            h1 {
+              text-align: center;
+              font-size: 24px;
+              margin-bottom: 10px;
+            }
+
+          </style>
+          <title>Ticket</title>
+        </head>
+        <body>
+          <h1>Ticket de venta ID:${saleId}</h1>
+          <hr style="border: 1px solid #000;margin: 10px 0;">
+          <div style="text-align: center;">
+            <h2 style="font-size: 18px;margin-bottom: 10px;">Ticket</h2>
+            <ul style="list-style-type: none;padding: 0;">
+              ${saleItems
+                .map(
+                  (item) =>
+                    `<li style="margin-bottom: 5px;">${item.product_name} - ${item.product_sale_total_quantity} unidades</li>`
+                )
+                .join("")}
+            </ul>
+          </div>
+        </body>
+      </html>
+    `;
+  
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+  
+    // Write content to the iframe
+    iframe.contentDocument.write(printContent);
+    iframe.contentDocument.close();
+  
+    // Print the content in the iframe
+    iframe.contentWindow.print();
+  
+    // Remove the iframe from the document
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 1000); // Delay removal to ensure print dialog appears
+
+  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

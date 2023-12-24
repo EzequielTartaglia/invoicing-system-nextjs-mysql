@@ -92,7 +92,6 @@ export default async function SalesPage({ params }) {
 
       {/* Lista de items agregados a la venta */}
       <SaleItemProductsTableWithPaginator validSaleItems={validSaleItems} saleId={sale.sale_id} sale_is_closed={sale.sale_is_closed}/>
-      
       {
             (validSaleItems.length === 0) 
             ? <div className="flex items-center justify-between">
@@ -101,11 +100,10 @@ export default async function SalesPage({ params }) {
               </div>
             : <span className="px-6 text-end"> <TotalSalePrice saleId={sale.sale_id}/> </span>
       }
-
       
       {sale.sale_is_closed == 0 &&        
         <div className="flex justify-center mt-[50px]">
-          <Buttons saleId={sale.sale_id} />
+          <Buttons saleId={sale.sale_id} saleItems={saleItems} />
         </div>
       }
       
