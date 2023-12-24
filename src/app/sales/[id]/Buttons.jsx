@@ -13,21 +13,30 @@ function Buttons({ saleId, saleItems}) {
     sale_is_closed: 0,
   });
 
-useEffect(() => {
-    const fetchSale = async (id) => {
-        try {
-          const { data } = await axios.get('/api/sales/' + id);
-          setSale(data[0]);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+  const [saleTotal, setSaleTotal] = useState({
+    sale_total: 0,
+  });
 
-    if (saleId) {
-        fetchSale(saleId);
-    }
+  useEffect(() => {
+    const fetchSale = async (id) => {
+      try {
+        const { data } = await axios.get('/api/sales/' + id);
+        setSale(data[0]);
+        setSaleTotal(data[0].sale_total);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const intervalId = setInterval(() => {
+      fetchSale(saleId);
+    }, 100);
+
+    // Limpia el intervalo cuando el componente se desmonta
+    return () => clearInterval(intervalId);
 
   }, [saleId]);
+
 
   const printSaleTicket = () => {
     const printContent = `
@@ -63,6 +72,9 @@ useEffect(() => {
           </table>
             </div>
           <hr style="border: 1px solid #000;margin: 10px 0;">
+          <div style="text-align: right;">
+            Total a pagar: $${sale.sale_total}
+          </div>
         </body>
       </html>
     `;
