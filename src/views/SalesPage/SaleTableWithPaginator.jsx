@@ -85,6 +85,7 @@ export default function SaleTableWithPaginator({ validSales }) {
           </tbody>
         </table>
       </div>
+      { (validSales.length > 10) &&
       <div className="flex justify-between items-center mt-4">
         <div>
           <button
@@ -140,6 +141,7 @@ export default function SaleTableWithPaginator({ validSales }) {
           </button>
         </div>
       </div>
+      }
     </div>
   );
 }

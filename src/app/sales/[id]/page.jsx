@@ -2,7 +2,7 @@ import axios from 'axios'
 import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
-import DeleteAllProductIdButton from './DeleteAllProductIdButton';
+import SaleItemProductsTableWithPaginator from '../../../views/SalesPage/SaleItems/SaleItemProductsTableWithPaginator';
 import TotalSalePrice from './TotalSalePrice';
 
 async function loadProducts() {
@@ -90,31 +90,8 @@ export default async function SalesPage({ params }) {
       </div>
       }
 
-      <table className="min-w-full border border-gray-300 mt-[40px]">
-        <thead className="bg-blue-500 w-full text-white font-bold">
-          <tr>
-            <th className="py-1 px-6 border-b">Nombre</th>
-            <th className="py-1 px-6 border-b">Categoria</th>
-            <th className="py-1 px-6 border-b">Cantidad</th>
-            <th className="py-1 px-6 border-b">Precio</th>
-            {sale.sale_is_closed == 0 && <th className="py-1 px-6 border-b">Acciones</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {
-            (validSaleItems.length > 0) &&
-            validSaleItems.map((sale_item) => (
-            <tr key={sale_item.product_id}  className="hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700">
-              <td className="py-1 px-6 border-b text-center">{sale_item.product_name}</td>
-              <td className="py-1 px-6 border-b text-center">{sale_item.category_name}</td>
-              <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_quantity}</td>
-              <td className="py-1 px-6 border-b text-center">{sale_item.product_sale_total_price}</td>
-              {sale.sale_is_closed == 0 && <td className="py-1 px-6 border-b text-center"><DeleteAllProductIdButton saleId={sale_item.sale_id} productId={sale_item.product_id}/></td>}         
-            </tr>
-          ))
-          }
-        </tbody>
-      </table>
+      {/* Lista de items agregados a la venta */}
+      <SaleItemProductsTableWithPaginator validSaleItems={validSaleItems} saleId={sale.sale_id} sale_is_closed={sale.sale_is_closed}/>
       
       {
             (validSaleItems.length === 0) 
