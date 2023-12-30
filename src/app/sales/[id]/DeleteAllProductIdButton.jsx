@@ -9,18 +9,6 @@ export default function DeleteAllProductIdButton({ saleId, productId }) {
     const [productStock, setProductStock] = useState(0);
 
     useEffect(() => {
-        const fetchSale = async (id) => {
-            try {
-              const { data } = await axios.get('/api/sales/' + id);
-              setSale(data[0]);
-            } catch (error) {
-              console.error(error);
-            }
-          };
-    
-        if (saleId) {
-            fetchSale(saleId);
-        }
     
         const fetchProduct = async (id) => {
           try {
@@ -30,14 +18,30 @@ export default function DeleteAllProductIdButton({ saleId, productId }) {
             console.error(error);
           }
         };
+      
       // Obtener la cantidad de stock del producto al cargar el componente
       fetchProduct(productId);
-
+  
       }, [productId, saleId]);
     
       const handleDeleteAllItems = async () => {
+        const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}/sale_items/${productId}`);
+        const response = parseInt(data[0].product_sale_total_quantity)
+
         const res = await axios.delete(`http://localhost:3000/api/sales/${saleId}/sale_items/${productId}`);
           router.refresh();
+
+        // Actualizar la cantidad de stock del producto
+        const updatedQuantity = productStock + response;
+        await axios.put(`http://localhost:3000/api/products/${productId}`, {
+          product_stock_quantity: updatedQuantity,
+      });
+
+        // Actualizar localmente la cantidad de stock del producto
+        setProductStock(0);
+
+        // Actualizar la interfaz de usuario (router.refresh() puede no ser necesario)
+        router.refresh();
       }
 
   return (
