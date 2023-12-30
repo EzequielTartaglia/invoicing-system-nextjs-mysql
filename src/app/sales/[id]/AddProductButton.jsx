@@ -1,12 +1,10 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 function AddProductButton({ saleId, productId, productIdPrice }) {
-  
-  //console.log(saleId,productId,productIdPrice)
   const router = useRouter();
 
   const [saleItem, setSaleItem] = useState({
@@ -16,31 +14,58 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
     sale_item_total: productIdPrice
   });
 
-  const handleAddProduct = async (e) => {
+  const [productStock, setProductStock] = useState(0);
+
+  useEffect(() => {
+    const fetchProduct = async (id) => {
+      try {
+        const { data } = await axios.get('/api/products/' + id);
+        setProductStock(data[0].product_stock_quantity);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Obtener la cantidad de stock del producto al cargar el componente
+    fetchProduct(productId);
+
+  }, [productId]);
+
+  const handleAddProduct = async () => {
     try {
-        await axios.post(`http://localhost:3000/api/sale_items`, saleItem)
-        console.log(saleItem)
-        router.refresh();
-  
-        toast.success("Product added to sale", {
-            position: "bottom-center",
-          });
-        } 
-     catch (error) {
-      toast.error(error.response.data.message);
+      // Agregar el producto a la venta
+      await axios.post(`http://localhost:3000/api/sale_items`, saleItem);
+
+      // Actualizar la cantidad de stock del producto
+      const updatedQuantity = productStock - 1;
+      await axios.put(`http://localhost:3000/api/products/${productId}`, {
+        product_stock_quantity: updatedQuantity,
+      });
+
+      // Actualizar localmente la cantidad de stock del producto
+      setProductStock(updatedQuantity);
+
+      // Actualizar la interfaz de usuario (router.refresh() puede no ser necesario)
+      router.refresh();
+
+      toast.success("Product added to sale", {
+        position: "bottom-center",
+      });
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Error adding product to sale");
     }
   };
 
-
-  return (<>
+  return (
     <div className="flex gap-x-2 justify-end">
       <button
         className="text-white bg-gray-500 hover:bg-gray-600 py-1 px-3 rounded"
         onClick={handleAddProduct}
-      >+</button>
+      >
+        +
+      </button>
     </div>
-    </>);
+  );
 }
 
 export default AddProductButton;
-
