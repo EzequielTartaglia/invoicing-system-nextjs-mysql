@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { dateFormat } from '@/helpers/dateFormat';
-import * as XLSX from 'xlsx'; // Import the XLSX object
+import * as XLSX from 'xlsx';
 
 export default function ExportSalesButton({ validSales }) {
     
