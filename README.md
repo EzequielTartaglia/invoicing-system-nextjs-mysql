@@ -8,5 +8,11 @@
     - NodeJs: https://nodejs.org/en/download/
 
 2. Instala las dependencias con `npm i`
-3. Ejecuta el comando `npm run db:dev:up` para inicializar el servidor bd (localhost) y el comando `npm run dev` en simultaneo.
-4. Abrir http://localhost:3000 en tu navegador.
+
+3. En el archivo `/config/db.js` cambia las configuraciones segun lo tengas en tu pc, por ejemplo la contraseña si es root (normalmente), o si el port es diferente al que alli aparece si no es el que viene por defecto que es el 3306 para MySQL.
+
+4. Ejecuta en MySQL(cli) o MySqlWorkbench los scripts que se encuentran en `/db/db.sql` y `/db/seed.sql` en ese orden.
+
+5. Ejecuta el comando `npm run db:dev:up` para inicializar el servidor bd (localhost) y el comando `npm run dev` en simultaneo.
+
+6. Abrir http://localhost:3000 en tu navegador.
