@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ClearCart from "./ClearCart";
 import CreateSaleButton from "../CreateSaleButton";
+import { dateFormat } from "@/helpers/dateFormat";
 
 function Buttons({ saleId, saleItems}) {
   const router = useRouter();
@@ -46,12 +47,21 @@ function Buttons({ saleId, saleItems}) {
           <title>Ticket</title>
         </head>
         <body style="font-family: 'Arial', sans-serif;background-color: #fff;margin: 10mm;font-size: 14px;">
-        <img width="70px" style="border-radius:12px;" src="https://yt3.googleusercontent.com/ytc/AIf8zZToi3Kr5suo-QJCFK02B8JKFXL-CAVKQeu_pkyS=s176-c-k-c0x00ffffff-no-rj" />
-        <h2 style="text-align: center;font-size: 24px;margin-bottom: 10px;">Sistema de gestion</h2>
-          <hr style="border: 1px solid #000;margin: 10px 0;"/>
-          <div style="text-align: center;">
-            <h2 style="font-size: 18px;margin-bottom: 10px;">TICKET N°${saleId}</h2>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+        <img width="70px" style="border-radius:12px;" src="https://yt3.googleusercontent.com/ytc/AIf8zZToi3Kr5suo-QJCFK02B8JKFXL-CAVKQeu_pkyS=s176-c-k-c0x00ffffff-no-rj"  />
+        <h2 style="text-align: center;font-size: 24px;margin-bottom: 10px;">Orden de compra</h2>
+          
+        <hr style="border: 1px solid #000;margin: 10px 0;"/>
+          
+        <div style="text-align: center;">
+          
+          <div style="float: left; width: 50%;">
+            <h6 style="text-align: left; font-size: 14px; margin-bottom: 5px; margin-top: -5px;">TICKET N°${saleId}</h6>
+          </div>
+          <div style="float: right; width: 50%;">
+            <h6 style="text-align: right; font-size: 14px; margin-bottom: 5px; margin-top: -5px;">${dateFormat(new Date().toISOString().split('T')[0])}</h6>
+          </div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
             <thead>
               <tr>
               <th style="text-align:left; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Concepto</th>
@@ -71,10 +81,11 @@ function Buttons({ saleId, saleItems}) {
                 )
                 .join("")}
             </tbody>
-          </table>
+        </table>
+        </div>
 
-          </div>
-          <hr style="border: 1px solid #000;margin: 10px 0;"/>
+        <hr style="border: 1px solid #000;margin: 10px 0;"/>
+        
           <div style="text-align: center;">
           <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
           <thead>
