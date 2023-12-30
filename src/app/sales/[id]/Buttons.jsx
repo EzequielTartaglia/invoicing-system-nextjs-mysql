@@ -7,7 +7,7 @@ import ClearCart from "./ClearCart";
 import CreateSaleButton from "../CreateSaleButton";
 import { dateFormat } from "@/helpers/dateFormat";
 
-function Buttons({ saleId, saleItems}) {
+function Buttons({ saleId, saleItems, user}) {
   const router = useRouter();
 
   const [sale, setSale] = useState({
@@ -52,21 +52,24 @@ function Buttons({ saleId, saleItems}) {
           
         <hr style="border: 1px solid #000;margin: 10px 0;"/>
           
-        <div style="text-align: center;">
-          
+        <div style="text-align: center;">      
+
           <div style="float: left; width: 50%;">
-            <h6 style="text-align: left; font-size: 14px; margin-bottom: 5px; margin-top: -5px;">TICKET N°${saleId}</h6>
+            <h6 style="text-align: left; font-size: 14px; margin-bottom: 10px; margin-top: -5px;">TICKET N°${saleId}</h6>
           </div>
           <div style="float: right; width: 50%;">
-            <h6 style="text-align: right; font-size: 14px; margin-bottom: 5px; margin-top: -5px;">${dateFormat(new Date().toISOString().split('T')[0])}</h6>
+            <h6 style="text-align: right; font-size: 14px; margin-bottom: 10px; margin-top: -5px;">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} ${dateFormat(new Date().toISOString().split('T')[0])}</h6>
           </div>
+
+          <h6 style="text-align: left; font-size: 14px; margin-bottom: 10px; margin-top: -5px;">Cajero: ${user}</h6>
 
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
             <thead>
               <tr>
               <th style="text-align:left; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Concepto</th>
               <th style="text-align:center; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Cant.</th>
-              <th style="text-align:center; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Neto</th>            </tr>
+              <th style="text-align:center; border-top: 2px solid #000; border-bottom: 1px solid #000; padding: 8px;">Neto</th>            
+              </tr>
             </thead>
             <tbody>
               ${saleItems
@@ -85,7 +88,7 @@ function Buttons({ saleId, saleItems}) {
         </div>
 
         <hr style="border: 1px solid #000;margin: 10px 0;"/>
-        
+
           <div style="text-align: center;">
           <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
           <thead>

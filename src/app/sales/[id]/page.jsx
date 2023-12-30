@@ -103,7 +103,7 @@ export default async function SalesPage({ params }) {
       
       {sale.sale_is_closed == 0 &&        
         <div className="flex justify-center mt-[50px]">
-          <Buttons saleId={sale.sale_id} saleItems={saleItems} />
+          <Buttons saleId={sale.sale_id} saleItems={saleItems} user={sale.user_name} />
         </div>
       }
       
