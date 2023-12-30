@@ -1,8 +1,7 @@
 import axios from "axios";
-import Link from "next/link"; 
-import { dateFormat } from "@/helpers/dateFormat";
 import CreateSaleButton from "../../app/sales/CreateSaleButton";
 import SaleTableWithPaginator from "./SaleTableWithPaginator";
+import ExportSalesButton from "./ExportSalesButton";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
@@ -42,11 +41,15 @@ export default async function SalesPage() {
       );
     }
     
+
+
     return (
     <div>
 
-      <div className="py-2 flex justify-end items-center">
-        <CreateSaleButton text={"Agregar"}/>
+      <div className="flex justify-between items-center mb-3">
+      <ExportSalesButton validSales={validSales}/>
+
+      <CreateSaleButton text={"Agregar"}/>
       </div>
 
       <SaleTableWithPaginator validSales={validSales}/>
