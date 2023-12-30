@@ -100,6 +100,7 @@ function Buttons({ saleId, saleItems, user}) {
             </thead>
         </table>
           </div>
+          <h6 style="text-align: center; font-size: 14px; margin-bottom: 10px; margin-top: 150px;">¡Gracias por tu compra!</h6>
         </body>
       </html>
     `;
