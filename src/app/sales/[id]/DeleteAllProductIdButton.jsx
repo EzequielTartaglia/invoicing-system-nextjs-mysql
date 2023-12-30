@@ -48,7 +48,7 @@ export default function DeleteAllProductIdButton({ saleId, productId }) {
     <button
         className="text-white bg-red-500 hover:bg-red-700 py-1 px-3 rounded"
         onClick={handleDeleteAllItems}>
-        vaciar
+        Eliminar producto
       </button>
   )
 }

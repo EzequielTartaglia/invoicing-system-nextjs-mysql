@@ -11,7 +11,7 @@ function RemoveProductButton({ saleId, productId, productIdPrice }) {
     sale_id: saleId,
     product_id: productId,
     quantity: -1,
-    sale_item_total: productIdPrice
+    sale_item_total: -productIdPrice
   });
 
   const [productStock, setProductStock] = useState(0);
