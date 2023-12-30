@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Buttons from './Buttons';
 import AddProductButton from './AddProductButton';
+import RemoveProductButton from './RemoveProductButton';
 import { dateFormat } from "@/helpers/dateFormat";
 import SaleItemProductsTableWithPaginator from '../../../views/SalesPage/SaleItems/SaleItemProductsTableWithPaginator';
 import TotalSalePrice from './TotalSalePrice';
@@ -81,8 +82,15 @@ export default async function SalesPage({ params }) {
               <td className="py-1 px-6 border-b text-center">{product.product_price}</td>
               <td className="py-1 px-6 border-b text-center">{product.product_stock_quantity}</td>
               <td className="py-1 px-6 border-b text-center">
-              <AddProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
-            </td>          
+                <div className="flex">
+                  <div className="py-1 px-1">
+                    <RemoveProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
+                  </div>
+                  <div className="py-1 px-1">
+                    <AddProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
+                  </div>
+                </div>
+              </td>    
             </tr>
           ))}
         </tbody>

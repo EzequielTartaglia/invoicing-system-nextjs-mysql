@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
-function AddProductButton({ saleId, productId, productIdPrice }) {
+function RemoveProductButton({ saleId, productId, productIdPrice }) {
   const router = useRouter();
 
   const [saleItem, setSaleItem] = useState({
     sale_id: saleId,
     product_id: productId,
-    quantity: 1,
+    quantity: -1,
     sale_item_total: productIdPrice
   });
 
@@ -38,7 +38,7 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
 
       // Actualizar la cantidad de stock del producto
       const { data } = await axios.get('/api/products/' + productId);
-      const productStock = data[0].product_stock_quantity - 1;
+      const productStock = data[0].product_stock_quantity + 1;
       await axios.put(`http://localhost:3000/api/products/${productId}`, {
         product_stock_quantity: productStock,
       });
@@ -60,13 +60,13 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
   return (
     <div className="flex gap-x-2 justify-end">
       <button
-        className="text-white bg-gray-500 hover:bg-gray-600 py-1 px-3 rounded"
+        className="text-white bg-red-500 hover:bg-red-600 py-1 px-3 rounded"
         onClick={handleAddProduct}
       >
-        +
+        -
       </button>
     </div>
   );
 }
 
-export default AddProductButton;
+export default RemoveProductButton;
