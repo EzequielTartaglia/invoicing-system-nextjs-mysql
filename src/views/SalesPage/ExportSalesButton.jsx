@@ -19,20 +19,17 @@ export default function ExportSalesButton({ validSales }) {
             'Apellido Usuario': sale.user_last_name
         }));
 
-    const ws = XLSX.utils.json_to_sheet(filteredSales, { header: ['ID Venta', 'Fecha Venta', 'Total Venta', 'Venta Cerrada', 'Nombre Usuario', 'Apellido Usuario'] });
-    
-    const centeredStyle = { alignment: { horizontal: 'center' } };
+    const ws = XLSX.utils.json_to_sheet(filteredSales, { header: ['ID Venta', 'Fecha Venta', 'Total Venta', 'Venta Cerrada', 'Nombre Usuario', 'Apellido Usuario']});
 
     // Settear el ancho de las columnas
     ws['!cols'] = [
-        { wch: 12, style: centeredStyle }, // ID Venta
-        { wch: 12, style: centeredStyle }, // Fecha Venta
-        { wch: 12, style: centeredStyle }, // Total Venta
-        { wch: 15, style: centeredStyle }, // Venta Cerrada
-        { wch: 20, style: centeredStyle }, // Nombre Usuario
-        { wch: 20, style: centeredStyle }, // Apellido Usuario
+        { wch: 12 }, // ID Venta
+        { wch: 12 }, // Fecha Venta
+        { wch: 12 }, // Total Venta
+        { wch: 15 }, // Venta Cerrada
+        { wch: 20 }, // Nombre Usuario
+        { wch: 20 }, // Apellido Usuario
     ];
-
 
     const wb = XLSX.utils.book_new();
     
