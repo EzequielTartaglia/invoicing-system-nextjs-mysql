@@ -39,14 +39,16 @@ function Buttons({ saleId, saleItems}) {
 
 
   const printSaleTicket = () => {
+
     const printContent = `
       <html>
         <head>
           <title>Ticket</title>
         </head>
         <body style="font-family: 'Arial', sans-serif;background-color: #fff;margin: 10mm;font-size: 14px;">
-          <h1 style="text-align: center;font-size: 24px;margin-bottom: 10px;">Sistema de gestion</h1>
-          <hr style="border: 1px solid #000;margin: 10px 0;">
+        <img width="70px" style="border-radius:12px;" src="https://yt3.googleusercontent.com/ytc/AIf8zZToi3Kr5suo-QJCFK02B8JKFXL-CAVKQeu_pkyS=s176-c-k-c0x00ffffff-no-rj" />
+        <h2 style="text-align: center;font-size: 24px;margin-bottom: 10px;">Sistema de gestion</h2>
+          <hr style="border: 1px solid #000;margin: 10px 0;"/>
           <div style="text-align: center;">
             <h2 style="font-size: 18px;margin-bottom: 10px;">TICKET N°${saleId}</h2>
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
@@ -70,9 +72,9 @@ function Buttons({ saleId, saleItems}) {
                 .join("")}
             </tbody>
           </table>
-          </div>
-          <hr style="border: 1px solid #000;margin: 10px 0;">
 
+          </div>
+          <hr style="border: 1px solid #000;margin: 10px 0;"/>
           <div style="text-align: center;">
           <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
           <thead>
@@ -133,9 +135,8 @@ function Buttons({ saleId, saleItems}) {
 
   return (
     <div className="flex justify-between items-center gap-x-2 mt-2">
-  
+
       <ClearCart saleId={saleId} />
-  
         <CreateSaleButton buttonColor={'bg-red-500 hover:bg-red-700'} onClick={async() => {  
           if (confirm("¿Estás seguro que quieres eliminar esta venta?")) {
             const res = await axios.delete("/api/sales/" + saleId);
