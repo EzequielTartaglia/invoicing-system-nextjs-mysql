@@ -2,9 +2,9 @@
 
 ### Preparacion del entorno
 
-1. Instala las herramientas necesarias:
-    - MySql8.1: https://downloads.mysql.com/archives/get/p/23/file/mysql-8.1.0-winx64.msi
-    - MySql(cli): https://downloads.mysql.com/archives/get/p/43/file/mysql-shell-8.1.1-windows-x86-64bit.msi
+1. Instala las herramientas necesarias: 
+    - MySql8.1: https://downloads.mysql.com/archives/get/p/23/file/mysql-8.1.0-winx64.msi (`Nota: instalar en el path: C:\Program Files\MySQL\MySQL Server 8.1`)
+    - MySql(cli): https://downloads.mysql.com/archives/get/p/43/file/mysql-shell-8.1.1-windows-x86-64bit.msi (`Nota: instalar en el path: C:\Program Files\MySQL\MySQL Server 8.1`)
     - NodeJs: https://nodejs.org/en/download/
 
 2. Instala las dependencias con `npm i`
