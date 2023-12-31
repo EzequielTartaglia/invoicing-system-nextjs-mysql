@@ -38,6 +38,8 @@ function Navbar() {
         </div>
 
         <ul className="flex space-x-4">
+          {/* Enlace para salir si está autenticado */}
+          {userName && (<>
           <li className="pr-4">
             <Link href="/products" className="text-sky-500 hover:text-sky-400">
               Control de stock
@@ -48,6 +50,22 @@ function Navbar() {
               Sistema de compras
             </Link>
           </li>
+
+            <li>
+              <button onClick={""} className="text-sky-500 hover:text-sky-400 cursor-pointer">
+                Salir
+              </button>
+            </li>
+            </>)}
+
+          {/* Enlace para iniciar sesión si no está autenticado */}
+          {!userName && (
+            <li>
+              <Link href="/login" className="text-sky-500 hover:text-sky-400">
+                Iniciar sesión
+              </Link>
+            </li>
+          )}
         </ul>
 
       </div>
