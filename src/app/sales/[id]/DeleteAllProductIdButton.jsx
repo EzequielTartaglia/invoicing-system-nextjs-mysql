@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function DeleteAllProductIdButton({ saleId, productId }) {
+export default function DeleteAllProductIdButton({ saleId, productId}) {
     const router = useRouter();
 
     const [productStock, setProductStock] = useState(0);

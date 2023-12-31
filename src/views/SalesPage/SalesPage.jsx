@@ -5,13 +5,13 @@ import ExportSalesButton from "./ExportSalesButton";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");
-    console.log(data);
+    //console.log(data);
     return data;
   }
 
   async function loadSales() {
     const { data } = await axios.get("http://localhost:3000/api/sales");
-    console.log(data);
+    //console.log(data);
     return data;
   }
   

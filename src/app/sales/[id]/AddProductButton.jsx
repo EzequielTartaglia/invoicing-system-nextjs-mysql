@@ -39,6 +39,7 @@ function AddProductButton({ saleId, productId, productIdPrice }) {
       // Actualizar la cantidad de stock del producto
       const { data } = await axios.get('/api/products/' + productId);
       const productStock = data[0].product_stock_quantity - 1;
+      
       await axios.put(`http://localhost:3000/api/products/${productId}`, {
         product_stock_quantity: productStock,
       });

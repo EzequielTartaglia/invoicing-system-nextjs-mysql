@@ -8,20 +8,20 @@ import TotalSalePrice from './TotalSalePrice';
 
 async function loadProducts() {
     const { data } = await axios.get("http://localhost:3000/api/products");
-    console.log(data);
+    //console.log(data);
     return data.length > 0 ? data : [];
   }
 
 async function loadSale(saleId) {
     const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}`);
-    console.log(data);
+    //console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
     return data.length > 0 ? data[0] : [];
   }
 
 async function loadSaleItems(saleId) {
     const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}/sale_items`);
-    console.log(data);
+    //console.log(data);
     // Verifica si hay datos antes de acceder a la posición 0 del array
     return data.length > 0 ? data : [];
   }
@@ -31,8 +31,8 @@ export default async function SalesPage({ params }) {
     const sale = await loadSale(params.id);
     const saleItems = await loadSaleItems(params.id);
     
-    console.log(sale)
-    console.log(saleItems)
+    //console.log(sale)
+    //console.log(saleItems)
     
     // Filter valid `id` products 
     const validProducts = products.filter((product) => product.product_id !== undefined);
