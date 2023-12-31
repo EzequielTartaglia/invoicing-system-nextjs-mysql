@@ -1,19 +1,17 @@
 "use client";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
   const [user, setUser] = useState({
-    user_name: "",
-    user_password: "",
-    user_is_active: 0
+    user_email: "",
+    user_password: ""
   });
 
   const router = useRouter();
-  const params = useParams();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -26,33 +24,50 @@ export function LoginForm() {
     };
 
     fetchUsers();
-
   }, []);
 
   const handleChange = ({ target: { name, value } }) =>
     setUser({ ...user, [name]: value });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Aquí debes hacer la solicitud al servidor para actualizar el estado a activo
-      await axios.put("/api/users/" + user.id, {
-        user_name: user.user_name,
-        user_password: user.user_password,
-        user_is_active: 1  // Actualiza el estado a activo
-      });
-
-      toast.success("Usuario activado exitosamente", {
-        position: "bottom-center",
-      });
-
-      // Puedes redirigir o realizar otras acciones después de activar el usuario
-      router.push("/");
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Error al activar usuario");
-    }
-  };
-
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        // Obtener la lista de usuarios
+        const { data: users } = await axios.get('/api/users');
+    
+        // Buscar el usuario con el nombre proporcionado
+        const foundUser = users.find((u) => (u.user_email === user.user_email) && (u.user_password === user.user_password) );
+    
+        if (foundUser) {
+          // Encontrado: actualiza la propiedad user_is_active a 1
+          alert("Inicio de sesion exitoso")
+          await axios.put(`/api/users/${foundUser.id}`, {
+            user_email: user.user_email,
+            user_password: user.user_password,
+            user_is_active: 1
+          });
+    
+          toast.success("Inicio de sesión exitoso", {
+            position: "bottom-center",
+          });
+    
+          // Puedes redirigir o realizar otras acciones después de activar el usuario
+          router.push("/");
+        } else {
+          // No encontrado: maneja el caso en que el usuario no existe
+          toast.error("Usuario no encontrado");
+    
+          // Limpia ambos campos del formulario
+          setUser({
+            user_email: "",
+            user_password: ""
+          });
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || "Error en el inicio de sesión");
+      }
+    };
+    
   return (
     <div className="md:min-w-[400px] lg:min-w-[600px]">
       <form
@@ -63,18 +78,18 @@ export function LoginForm() {
         <div className="mb-4">
           <label
             className="block text-gray-700 dark:text-white text-sm font-bold mb-2"
-            htmlFor="name"
+            htmlFor="email"
           >
             Usuario
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             type="text"
-            placeholder="Ingrese un nombre"
-            id="name"
-            name="user_name"
+            placeholder="Ingrese un email"
+            id="email"
+            name="user_email"
             onChange={handleChange}
-            value={user.user_name}
+            value={user.user_email}
             autoComplete="off"
             autoFocus
           />
@@ -89,14 +104,13 @@ export function LoginForm() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
-            type="text"
+            type="password"  // Cambié el tipo a password para ocultar la contraseña
             placeholder="Ingrese una contraseña"
             id="password"
             name="user_password"
             onChange={handleChange}
             value={user.user_password}
             autoComplete="off"
-            autoFocus
           />
         </div>
 
