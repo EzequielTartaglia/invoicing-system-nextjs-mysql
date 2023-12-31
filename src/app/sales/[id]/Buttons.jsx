@@ -3,7 +3,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import ClearCart from "./ClearCart";
 import CreateSaleButton from "../CreateSaleButton";
 import { dateFormat } from "@/helpers/dateFormat";
 
@@ -151,7 +150,6 @@ function Buttons({ saleId, saleItems, user}) {
   return (
     <div className="flex justify-between items-center gap-x-2 mt-2">
 
-      <ClearCart saleId={saleId} />
         <CreateSaleButton buttonColor={'bg-red-500 hover:bg-red-700'} onClick={async() => {  
           if (confirm("¿Estás seguro que quieres eliminar esta venta?")) {
             const res = await axios.delete("/api/sales/" + saleId);
