@@ -83,7 +83,7 @@ export function LoginForm() {
         <div className="flex items-center justify-center mb-4">
           <Image src={EzTechLogo} alt="" className="w-[150px] h-[150px] rounded-full" />
         </div>
-        Ingresar
+        Sistema de gestion
       </div>
 
         <div className="mb-4">
