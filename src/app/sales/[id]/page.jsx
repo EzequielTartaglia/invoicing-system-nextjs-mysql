@@ -36,7 +36,7 @@ export default async function SalesPage({ params }) {
     
     // Filter valid `id` products 
     const validProducts = products.filter((product) => product.product_id !== undefined);
-    const validSaleItems = saleItems.filter((sale_item) => sale_item.product_id !== undefined);
+    const validSaleItems = saleItems.filter((sale_item) => sale_item.product_id !== undefined && sale_item.product_sale_total_quantity > 0);
   
     if (validProducts.length === 0) return <h1>No se encuentran productos agregados en la base de datos.</h1>;
 
