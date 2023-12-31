@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 export function LoginForm() {
   const [user, setUser] = useState({
     user_email: "",
-    user_password: ""
+    user_password: "",
+    user_is_active: 0
   });
 
   const router = useRouter();
@@ -41,7 +42,7 @@ export function LoginForm() {
         if (foundUser) {
           // Encontrado: actualiza la propiedad user_is_active a 1
           alert("Inicio de sesion exitoso")
-          await axios.put(`/api/users/${foundUser.id}`, {
+          await axios.put(`/api/users/${foundUser.user_id}`, {
             user_email: user.user_email,
             user_password: user.user_password,
             user_is_active: 1

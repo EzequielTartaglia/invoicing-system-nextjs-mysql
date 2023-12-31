@@ -36,7 +36,7 @@ export async function PUT(request, { params }) {
     await pool.query("UPDATE user SET ? WHERE user_id = ?", [data, id]);
     return NextResponse.json({
       ...data,
-      user_id: id, // Cambiado de 'id' a 'user_id' para que coincida con la respuesta
+      id: params.id,
     });
   } catch (error) {
     return NextResponse.json({ message: error.message });
