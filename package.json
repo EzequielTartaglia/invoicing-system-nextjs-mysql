@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "services:up": "powershell.exe -ExecutionPolicy Bypass -File ./start-services.ps1", 
+    "services:up": "powershell.exe -ExecutionPolicy Bypass -File ./start-services.ps1",
     "dev": "next dev",
     "db:dev:up": "npm run services:up && npm run dev",
     "build": "next build",
@@ -17,6 +17,7 @@
     "axios": "^1.5.1",
     "mysql2": "^3.6.1",
     "next": "13.5.3",
+    "npm": "^10.2.5",
     "react": "latest",
     "react-dom": "latest",
     "react-feather": "^2.0.10",

@@ -1,5 +1,6 @@
 import axios from "axios";
 import Button from "@/components/Button";
+import { LoginForm } from "@/components/LoginForm";
 
 async function loadUsers() {
     const { data } = await axios.get("http://localhost:3000/api/users");
@@ -27,7 +28,5 @@ export default async function LoginPage() {
         );
       }
       
-    return (
-    <div>LoginPage</div>
-  )
+    return (<LoginForm/>)
 }
