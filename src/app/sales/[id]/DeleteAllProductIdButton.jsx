@@ -25,20 +25,18 @@ export default function DeleteAllProductIdButton({ saleId, productId}) {
       }, [productId, saleId]);
     
       const handleDeleteAllItems = async () => {
-        const { data } = await axios.get(`http://localhost:3000/api/sales/${saleId}/sale_items/${productId}`);
-        const response = parseInt(data[0].product_sale_total_quantity)
 
         const res = await axios.delete(`http://localhost:3000/api/sales/${saleId}/sale_items/${productId}`);
           router.refresh();
 
         // Actualizar la cantidad de stock del producto
-        const updatedQuantity = productStock + response;
+        const updatedQuantity = productStock +1;
         await axios.put(`http://localhost:3000/api/products/${productId}`, {
           product_stock_quantity: updatedQuantity,
       });
 
         // Actualizar localmente la cantidad de stock del producto
-        setProductStock(0);
+        setProductStock(updatedQuantity);
 
         // Actualizar la interfaz de usuario (router.refresh() puede no ser necesario)
         router.refresh();

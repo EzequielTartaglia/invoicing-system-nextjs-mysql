@@ -84,7 +84,9 @@ export default async function SalesPage({ params }) {
               <td className="py-1 px-6 border-b text-center">
                 <div className="flex">
                   <div className="py-1 px-1">
-                    <RemoveProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
+                  {(validSaleItems.filter((item) => item.product_id === product.product_id).length > 0) && 
+                  <RemoveProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
+                  }
                   </div>
                   <div className="py-1 px-1">
                     <AddProductButton saleId={sale.sale_id} productId={product.product_id} productIdPrice={product.product_price} />
