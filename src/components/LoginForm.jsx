@@ -53,8 +53,9 @@ export function LoginForm() {
             position: "bottom-center",
           });
     
-          // Puedes redirigir o realizar otras acciones después de activar el usuario
           router.push("/");
+          window.location.reload();
+
         } else {
           // No encontrado: maneja el caso en que el usuario no existe
           toast.error("Usuario no encontrado");
