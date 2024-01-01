@@ -40,7 +40,7 @@ export default function ExportProductsButton({ validProducts }) {
       
   return (
     <button
-    className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-5 rounded"
+    className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-5 rounded font-bold"
     onClick={exportProductsToExcel}>
     Exportar stock
   </button>
