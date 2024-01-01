@@ -48,11 +48,12 @@ function Navbar() {
   
         localStorage.removeItem('user_access_token')
 
-        toast.success("Inicio de sesión exitoso", {
+        toast.success("Sesion cerrada con exito", {
           position: "bottom-center",
         });
   
         window.location.reload();
+
       } else {
         // No encontrado: maneja el caso en que el usuario no existe
         toast.error("Usuario no encontrado");
