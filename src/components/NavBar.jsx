@@ -51,7 +51,7 @@ function Navbar() {
   
         localStorage.removeItem('user_access_token')
 
-        toast.success("Sesion cerrada con exito", {
+        toast.success("Sesión cerrada con exito", {
           position: "bottom-center",
         });
   
@@ -61,17 +61,10 @@ function Navbar() {
         }, 500);
 
       } else {
-        // No encontrado: maneja el caso en que el usuario no existe
-        toast.error("Usuario no encontrado");
-  
-        // Limpia ambos campos del formulario
-        setUser({
-          user_email: "",
-          user_password: ""
-        });
+        toast.error("Ha ocurrido un error para cerrar sesión");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Error en el inicio de sesión");
+      toast.error(error.response?.data?.message || "Error en el cierre de sesión");
     }
   };
  
