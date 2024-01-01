@@ -1,6 +1,7 @@
 import axios from "axios";
 import ProductTableWithPaginator from "./ProductTableWithPaginator";
 import Button from "@/components/Button";
+import ExportProductsButton from "@/exports/ExportProductsButton";
 
 async function loadProduct() {
   const { data } = await axios.get("http://localhost:3000/api/products");
@@ -29,8 +30,13 @@ async function ProductsPage() {
 
   return (<div>
     <div className="py-2 flex justify-end items-center">
-      <Button href="/products/new" text="Agregar" />
     </div>
+
+    <div className="flex justify-between items-center mb-3">
+      <ExportProductsButton validProducts={validProducts}/>
+
+      <Button href="/products/new" text="Agregar" />
+      </div>
 
    <div className="container mx-auto flex justify-between items-center">  
   </div>
