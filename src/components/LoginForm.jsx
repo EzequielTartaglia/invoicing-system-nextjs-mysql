@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import EzTechLogo from '../../public/ez-tech_logo.webp';
 
-const crypto = require('crypto');
-
 export function LoginForm() {
+  
+  const crypto = require('crypto');
+  
   const [user, setUser] = useState({
     user_email: "",
     user_password: "",
