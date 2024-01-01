@@ -6,7 +6,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 
 function Navbar() {
-  // Estado para almacenar el nombre del usuario
+  // Estado para almacenar informacion del usuario
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
