@@ -56,6 +56,8 @@ export function LoginForm() {
             user_token: randomToken
           });
     
+          localStorage.setItem('user_access_token',randomToken)
+
           toast.success("Inicio de sesión exitoso", {
             position: "bottom-center",
           });

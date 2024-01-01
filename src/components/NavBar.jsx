@@ -44,6 +44,8 @@ function Navbar() {
           user_token: ""
         });
   
+        localStorage.removeItem('user_access_token')
+        
         toast.success("Inicio de sesión exitoso", {
           position: "bottom-center",
         });
