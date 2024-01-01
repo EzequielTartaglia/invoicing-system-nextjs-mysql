@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import EzTechLogo from '../../public/ez-tech_logo.webp';
 
+const crypto = require('crypto');
+
 export function LoginForm() {
   const [user, setUser] = useState({
     user_email: "",
@@ -42,12 +44,15 @@ export function LoginForm() {
         const foundUser = users.find((u) => (u.user_email === user.user_email) && (u.user_password === user.user_password) );
     
         if (foundUser) {
+
+          const randomToken = crypto.randomBytes(32).toString('hex');
+
           // Encontrado: actualiza la propiedad user_is_active a 1
           await axios.put(`/api/users/${foundUser.user_id}`, {
             user_email: user.user_email,
             user_password: user.user_password,
             user_is_active: 1,
-            user_token: "123jsdh123jhasd"
+            user_token: randomToken
           });
     
           toast.success("Inicio de sesión exitoso", {
