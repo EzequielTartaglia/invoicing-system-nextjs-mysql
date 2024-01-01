@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -11,6 +12,8 @@ function Navbar() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userToken, setUserToken] = useState("");
+
+  const router = useRouter();
 
   useEffect(() => {
   
@@ -52,7 +55,10 @@ function Navbar() {
           position: "bottom-center",
         });
   
-        window.location.reload();
+        router.push("/login");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
 
       } else {
         // No encontrado: maneja el caso en que el usuario no existe
@@ -76,11 +82,6 @@ function Navbar() {
         <Link href="/">
           <h3 className="text-3xl">Sistema de gestión</h3>
         </Link>
-        
-        <div>
-          {/* Muestra un saludo personalizado con el nombre del usuario */}
-          {userName && <p> ¡Bienvenido, {userName}!</p>}
-        </div>
 
         <ul className="flex space-x-4">
           {/* Enlace para salir si está autenticado */}
@@ -95,6 +96,11 @@ function Navbar() {
               Sistema de compras
             </Link>
           </li>
+
+          
+          <li>
+              {userName}
+            </li>
 
             <li>
               <button onClick={handleLogOut} className="text-sky-500 hover:text-sky-400 cursor-pointer">
