@@ -54,7 +54,6 @@ export function LoginForm() {
           });
     
           router.push("/");
-          window.location.reload();
 
         } else {
           // No encontrado: maneja el caso en que el usuario no existe
