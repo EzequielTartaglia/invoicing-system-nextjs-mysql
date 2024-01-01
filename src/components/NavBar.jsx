@@ -10,6 +10,7 @@ function Navbar() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [userToken, setUserToken] = useState("");
 
   useEffect(() => {
   
@@ -20,6 +21,7 @@ function Navbar() {
         setUserName(data[0].user_name);
         setUserEmail(data[0].user_email);
         setUserPassword(data[0].user_password);
+        setUserToken(data[0].user_token);
       }  
     } catch (error) {
       console.error(error);
@@ -35,7 +37,7 @@ function Navbar() {
       const { data: users } = await axios.get('/api/users');
   
       // Buscar el usuario con el nombre proporcionado
-      const foundUser = users.find((u) => (u.user_name === userName) && (u.user_email === userEmail) && (u.user_password === userPassword) );
+      const foundUser = users.find((u) => (u.user_name === userName) && (u.user_email === userEmail) && (u.user_password === userPassword) && (u.user_token === localStorage.getItem('user_access_token')) );
   
       if (foundUser) {
         // Encontrado: actualiza la propiedad user_is_active a 1
@@ -45,7 +47,7 @@ function Navbar() {
         });
   
         localStorage.removeItem('user_access_token')
-        
+
         toast.success("Inicio de sesión exitoso", {
           position: "bottom-center",
         });
