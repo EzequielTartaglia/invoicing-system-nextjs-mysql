@@ -55,7 +55,7 @@ function Navbar() {
           position: "bottom-center",
         });
   
-        router.push("/login");
+        router.push("/");
         setTimeout(() => {
           window.location.reload();
         }, 500);
