@@ -54,7 +54,9 @@ export function LoginForm() {
           });
     
           router.push("/");
-
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
         } else {
           // No encontrado: maneja el caso en que el usuario no existe
           toast.error("Usuario no encontrado");
