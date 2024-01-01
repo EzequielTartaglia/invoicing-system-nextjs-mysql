@@ -1,12 +1,39 @@
-'use client'// Import necessary modules
-import { useState } from "react";
+'use client'
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 
 // Define the component
 export default function CreateSaleButton({ onClick, text, buttonColor }) {
+
+    // Estado para almacenar informacion del usuario
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const [userPassword, setUserPassword] = useState("");
+    const [userToken, setUserToken] = useState("");  
+  
     
+  useEffect(() => {
+  
+    const fetchUserInfo = async () => {
+      try {
+        const { data } = await axios.get('/api/users/user_active');
+        if (data && data.length > 0) {
+          setUserName(data[0].user_name);
+          setUserEmail(data[0].user_email);
+          setUserPassword(data[0].user_password);
+          setUserToken(data[0].user_token);
+        }  
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      
+    fetchUserInfo();
+    }, []);
+
     const buttonColorClass = buttonColor || 'bg-blue-500 hover:bg-blue-700';
 
     // Router for navigation
@@ -15,9 +42,17 @@ export default function CreateSaleButton({ onClick, text, buttonColor }) {
     // Function to create a new sale
     const createNewSale = async () => {
         try {
-            // Make a request to create a new sale
+           // Obtener la lista de usuarios
+            const { data: users } = await axios.get('/api/users');
+        
+            // Buscar el usuario con el nombre proporcionado
+            const foundUser = users.find((u) => (u.user_name === userName) && (u.user_email === userEmail) && (u.user_password === userPassword) && (u.user_token === localStorage.getItem('user_access_token')) );
+
+            if (foundUser) {       
+
+            // Iniciar nueva venta
             const response = await axios.post("/api/sales/", {
-                user_id: 1,
+                user_id: foundUser.user_id,
                 sale_date: new Date().toISOString().split('T')[0],
                 sale_total: 0,
                 sale_is_closed: 0,
@@ -25,9 +60,9 @@ export default function CreateSaleButton({ onClick, text, buttonColor }) {
 
             const getNewSale = await axios.get("/api/sales/last");
 
-            // Navigate to the new sale page
+            // Navegar hasta la nueva venta
             router.push(`/sales/${getNewSale.data[0].sale_id}`);
-            
+          }    
             
         } catch (error) {
             console.error("Error creating a new sale:", error);
