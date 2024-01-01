@@ -18,18 +18,19 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { user_name, user_last_name, user_email, user_account, user_password } = await request.json();
-    console.log(user_name, user_last_name, user_email, user_account, user_password);
+    const { user_name, user_last_name, user_email, user_account, user_password, user_token } = await request.json();
+    console.log(user_name, user_last_name, user_email, user_account, user_password, user_token);
 
     const result = await pool.query("INSERT INTO user SET ?", {
       user_name, 
       user_last_name, 
       user_email, 
       user_account, 
-      user_password
+      user_password,
+      user_token
     });
 
-    return NextResponse.json({ user_name, user_last_name, user_email, user_account, user_password, user_id: result.insertId });
+    return NextResponse.json({ user_name, user_last_name, user_email, user_account, user_password, user_token, user_id: result.insertId });
   } catch (error) {
     return NextResponse.json(
       { message: error.message },

@@ -12,6 +12,7 @@ CREATE TABLE user (
     user_email VARCHAR(255) NOT NULL UNIQUE,
     user_account VARCHAR(255) NOT NULL UNIQUE,
     user_password VARCHAR(255) NOT NULL,
+    user_token VARCHAR(255) NOT NULL,
     user_is_active BOOLEAN NOT NULL DEFAULT FALSE,
     user_is_banned BOOLEAN NOT NULL DEFAULT FALSE,
     user_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

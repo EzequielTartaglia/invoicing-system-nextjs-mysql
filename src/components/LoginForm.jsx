@@ -46,7 +46,8 @@ export function LoginForm() {
           await axios.put(`/api/users/${foundUser.user_id}`, {
             user_email: user.user_email,
             user_password: user.user_password,
-            user_is_active: 1
+            user_is_active: 1,
+            user_token: "123jsdh123jhasd"
           });
     
           toast.success("Inicio de sesión exitoso", {

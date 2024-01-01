@@ -40,7 +40,8 @@ function Navbar() {
       if (foundUser) {
         // Encontrado: actualiza la propiedad user_is_active a 1
         await axios.put(`/api/users/${foundUser.user_id}`, {
-          user_is_active: 0
+          user_is_active: 0,
+          user_token: ""
         });
   
         toast.success("Inicio de sesión exitoso", {
