@@ -1,7 +1,7 @@
 import axios from "axios";
 import CreateSaleButton from "../../app/sales/CreateSaleButton";
 import SaleTableWithPaginator from "./SaleTableWithPaginator";
-import ExportSalesButton from "./ExportSalesButton";
+import ExportSalesButton from "../../exports/ExportSalesButton";
 
 async function loadProduct() {
     const { data } = await axios.get("http://localhost:3000/api/products");

@@ -6,13 +6,13 @@ import * as XLSX from 'xlsx';
 export default function ExportSalesButton({ validSales }) {
     
     const exportSalesToExcel = () => {
-        const today = dateFormat(new Date().toISOString().split('T')[0]);
+      const today = dateFormat(new Date().toISOString(), 'yyyy-MM-dd');
 
         const filteredSales = validSales
-        .filter((sale) => dateFormat(sale.sale_date.split('T')[0]) === today)
+        .filter((sale) => dateFormat(sale.sale_date, 'yyyy-MM-dd') === today)
         .map(sale => ({
             'ID Venta': sale.sale_id,
-            'Fecha Venta': dateFormat(sale.sale_date.split('T')[0]),
+            'Fecha Venta': dateFormat(sale.sale_date, 'yyyy-MM-dd'),
             'Total Venta': sale.sale_total,
             'Venta Cerrada': sale.sale_is_closed === 1 ? 'Cerrado' : 'Abierto',
             'Nombre Usuario': sale.user_name,
